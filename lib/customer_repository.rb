@@ -43,4 +43,8 @@ class CustomerRepository
       customer.last_name.downcase.include? name
     end
   end
+
+  def inspect
+    "#<#{self.class} #{@customers.length} rows>"
+  end
 end

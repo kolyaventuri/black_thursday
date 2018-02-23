@@ -90,4 +90,8 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal 12, customers[2].id
     assert_equal 14, customers[3].id
   end
+
+  def test_it_overrides_inspect
+    assert_equal '#<CustomerRepository 15 rows>', @repo.inspect
+  end
 end
