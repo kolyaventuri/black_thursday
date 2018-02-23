@@ -26,7 +26,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
   def test_can_find_invoice_item_by_id
     item = @repo.find_by_id 9
     assert_instance_of InvoiceItem, item
-    assert_equal 9, item.idea
+    assert_equal 9, item.id
     assert_equal 299.73, item.unit_price
   end
 end
