@@ -85,4 +85,11 @@ class InvoiceRepositoryTest < Minitest::Test
       assert_instance_of Item, item
     end
   end
+
+  def test_can_get_customer_by_id
+    customer = @invoice_repo.find_customer_by_id 3
+    assert_instance_of Customer, customer
+    assert_equal 3, customer.id
+    assert_equal 'Mariah', customer.first_name
+  end
 end
