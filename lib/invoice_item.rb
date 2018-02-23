@@ -3,8 +3,8 @@
 # Defines an InvoiceItem
 class InvoiceItem
   attr_reader :id,
-              :customer_id,
-              :merchant_id,
+              :item_id,
+              :invoice_id,
               :quantity,
               :unit_price,
               :created_at,
@@ -12,8 +12,8 @@ class InvoiceItem
 
   def initialize(data)
     @id = data[:id].to_i
-    @customer_id = data[:customer_id].to_i
-    @merchant_id = data[:merchant_id].to_i
+    @item_id = data[:item_id].to_i
+    @invoice_id = data[:invoice_id].to_i
     @quantity = data[:quantity].to_i
     @unit_price = price_to_big_decimal data[:unit_price]
     @created_at = Time.parse data[:created_at]

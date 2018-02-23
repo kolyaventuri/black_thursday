@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'bigdecimal'
+
 require_relative 'test_helper.rb'
 
 require './lib/invoice_item.rb'
