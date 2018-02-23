@@ -8,6 +8,7 @@ require './lib/invoice_item.rb'
 
 class InvoiceItemTest < Minitest::Test
   TIME = Time.parse '2009-02-07'
+
   def setup
     @item = InvoiceItem.new(
       id: 6,

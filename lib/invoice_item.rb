@@ -16,6 +16,10 @@ class InvoiceItem
     @invoice_id = data[:invoice_id].to_i
     @quantity = data[:quantity].to_i
     @unit_price = price_to_big_decimal data[:unit_price]
+    parse_times data
+  end
+
+  def parse_times(data)
     @created_at = Time.parse data[:created_at]
     @updated_at = Time.parse data[:updated_at]
   end
