@@ -108,4 +108,18 @@ class MerchantRepositoryTest < Minitest::Test
     assert_instance_of SalesEngine, mr.sales_engine
     assert_instance_of InvoiceRepository, mr.sales_engine.invoices
   end
+
+  def test_can_get_customers_by_id
+    mr = MerchantRepository.new './test/fixtures/merchants.csv',
+                                MOCK_SALES_ENGINE
+
+    customers = mr.customers 4
+    
+    assert_instance_of Array, customers
+    assert_equal 4, customers.length
+
+    customers.each do |customer|
+      assert_instance_of Customer, customer
+    end
+  end
 end
