@@ -27,4 +27,17 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal 6, customer.id
     assert_equal 'Heber', customer.first_name
   end
+
+  def test_it_can_search_by_first_name
+    customers = @repo.find_all_by_first_name 'Logan'
+
+    assert_instance_of Array, customers
+    assert_equal 2, customers.length
+    customers.each do |customer|
+      assert_instance_of Customer, customer
+    end
+
+    assert_equal 11, customer[0].id
+    assert_equal 15, customer[1].id
+  end
 end
