@@ -16,4 +16,8 @@ class Customer
     @updated_at = Time.parse data[:updated_at]
     @customer_repository = customer_repository
   end
+
+  def merchants
+    @customer_repository.merchants @id
+  end
 end
