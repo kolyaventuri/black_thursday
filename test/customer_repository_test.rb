@@ -20,4 +20,11 @@ class CustomerRepositoryTest < Minitest::Test
       assert_instance_of Customer, customer
     end
   end
+
+  def test_it_can_find_by_id
+    customer = @repo.find_by_id 6
+    assert_instance_of Customer, customer
+    assert_equal 6, customer.id
+    assert_equal 'Heber', customer.first_name
+  end
 end
