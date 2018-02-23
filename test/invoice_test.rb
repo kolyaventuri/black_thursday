@@ -11,7 +11,7 @@ class InvoiceTest < Minitest::Test
   TIME = Time.parse '2016-01-11 17:42:32 UTC'
   def setup
     invoice_data = {
-      id: 6,
+      id: 3,
       customer_id: 7,
       merchant_id: 8,
       status: 'pending',
@@ -26,7 +26,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_attributes
-    assert_equal 6, @invoice.id
+    assert_equal 3, @invoice.id
     assert_equal 7, @invoice.customer_id
     assert_equal 8, @invoice.merchant_id
     assert_equal :pending, @invoice.status
@@ -36,5 +36,14 @@ class InvoiceTest < Minitest::Test
 
   def test_can_get_merchant
     assert_equal 8, @invoice.merchant.id
+  end
+
+  def test_can_find_items
+    items = @invoice.items
+    assert_instance_of Array, items
+    assert_equal 3, items.length
+    items.each do |item|
+      assert_instance_of Item, item
+    end
   end
 end
