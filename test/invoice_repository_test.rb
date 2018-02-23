@@ -78,7 +78,6 @@ class InvoiceRepositoryTest < Minitest::Test
   end
 
   def test_can_get_items_from_invoice_id
-
     items = @invoice_repo.find_items_by_invoice_id 3
     assert_instance_of Array, items
     assert_equal 3, items.length

@@ -59,5 +59,10 @@ class InvoiceRepository
     "#<#{self.class} #{@invoices.length} rows>"
   end
 
-  
+  def find_items_by_invoice_id(id)
+    invoice_items = @sales_engine.invoice_items.find_all_by_invoice_id id
+    invoice_items.map do |invoice_item|
+      @sales_engine.items.find_by_id invoice_item.item_id
+    end
+  end
 end
