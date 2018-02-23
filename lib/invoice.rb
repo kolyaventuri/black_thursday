@@ -23,4 +23,8 @@ class Invoice
   def merchant
     @invoice_repository.merchant @merchant_id
   end
+
+  def items
+    
+  end
 end

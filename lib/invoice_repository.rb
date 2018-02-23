@@ -58,4 +58,6 @@ class InvoiceRepository
   def inspect
     "#<#{self.class} #{@invoices.length} rows>"
   end
+
+  
 end

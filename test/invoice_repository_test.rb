@@ -77,11 +77,9 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 'GoldenRayPress', @invoice_repo.merchant(7).name
   end
 
-  def test_can_get_items_from_invoie_id
-    invoice = @invoice_repo.find_by_id 3
-    assert_instance_of Invoice, invoice
+  def test_can_get_items_from_invoice_id
 
-    items = invoice.items
+    items = @invoice_repo.find_items_by_invoice_id 3
     assert_instance_of Array, items
     assert_equal 3, items.length
     items.each do |item|
