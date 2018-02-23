@@ -92,4 +92,15 @@ class InvoiceRepositoryTest < Minitest::Test
     assert_equal 3, customer.id
     assert_equal 'Mariah', customer.first_name
   end
+
+  def test_can_get_invoice_items
+    items = @invoice_repo.invoice_items 3
+    assert_instance_of Array, items
+    assert_equal 3, items.length
+
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+      assert_equal 3, item.invoice_id
+    end
+  end
 end
