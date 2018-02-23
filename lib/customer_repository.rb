@@ -19,4 +19,8 @@ class CustomerRepository
       @customers.push customer
     end
   end
+
+  def all
+    @customers
+  end
 end
