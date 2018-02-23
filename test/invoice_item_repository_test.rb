@@ -39,4 +39,14 @@ class InvoiceItemRepositoryTest < Minitest::Test
       assert_equal 1, item.item_id
     end
   end
+
+  def test_can_find_all_by_invoice_id
+    items = @repo.find_all_by_invoice_id 2
+    assert_instance_of Array, items
+    assert_equal 4, items.length
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+      assert_equal 2, item.invoice_id
+    end
+  end
 end
