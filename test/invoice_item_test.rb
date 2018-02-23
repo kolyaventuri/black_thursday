@@ -7,9 +7,10 @@ class InvoiceItemTest < Minitest::Test
   def setup
     @item = InvoiceItem.new(
       id: 6,
-      customer_id: 7,
-      merchant_id: 8,
-      status: 'pending',
+      item_id: 7,
+      invoice_id: 8,
+      quantity: 1,
+      unit_price: '1099',
       created_at: '2009-02-07',
       updated_at: '2009-02-07'
     )
@@ -21,9 +22,10 @@ class InvoiceItemTest < Minitest::Test
 
   def test_does_store_attributes
     assert_equal 6, @item.id
-    assert_equal 7, @item.customer_id
-    assert_equal 8, @item.merchant_id
-    assert_equal :pending, @item.status
+    assert_equal 7, @item.item_id
+    assert_equal 8, @item.invoice_id
+    assert_equal 1, @item.quantity
+    assert_equal 10.99, @item.unit_price
     assert_equal TIME, @item.created_at
     assert_equal TIME, @item.updated_at
   end
