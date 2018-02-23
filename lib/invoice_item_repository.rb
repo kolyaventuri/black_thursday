@@ -29,4 +29,8 @@ class InvoiceItemRepository
       invoice_item.id == id
     end
   end
+
+  def find_all_by_item_id
+
+  end
 end
