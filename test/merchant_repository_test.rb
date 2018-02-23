@@ -114,7 +114,7 @@ class MerchantRepositoryTest < Minitest::Test
                                 MOCK_SALES_ENGINE
 
     customers = mr.customers 4
-    
+
     assert_instance_of Array, customers
     assert_equal 4, customers.length
 
