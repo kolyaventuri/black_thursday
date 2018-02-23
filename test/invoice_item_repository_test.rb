@@ -53,4 +53,8 @@ class InvoiceItemRepositoryTest < Minitest::Test
       assert_equal 2, item.invoice_id
     end
   end
+
+  def test_does_override_inspect
+    assert_equal '#<InvoiceItemRepository 15 rows>', @repo.inspect
+  end
 end
