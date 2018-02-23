@@ -41,7 +41,7 @@ class CustomerRepositoryTest < Minitest::Test
     assert_equal 15, customers[1].id
   end
 
-  def test_it_can_search_by_fist_name_fragment
+  def test_it_can_search_by_first_name_fragment
     customers = @repo.find_all_by_first_name 'ar'
 
     assert_instance_of Array, customers
@@ -52,5 +52,33 @@ class CustomerRepositoryTest < Minitest::Test
 
     assert_equal 3, customers[0].id
     assert_equal 7, customers[1].id
+  end
+
+  def test_it_can_search_by_last_name
+    customers = @repo.find_all_by_last_name 'Kris'
+
+    assert_instance_of Array, customers
+    assert_equal 2, customers.length
+    customers.each do |customer|
+      assert_instance_of Customer, customer
+    end
+
+    assert_equal 11, customers[0].id
+    assert_equal 15, customers[1].id
+  end
+
+  def test_it_can_search_by_last_name_fragment
+    customers = @repo.find_all_by_last_name 'er'
+
+    assert_instance_of Array, customers
+    assert_equal 4, customers.length
+    customers.each do |customer|
+      assert_instance_of Customer, customer
+    end
+
+    assert_equal 5, customers[0].id
+    assert_equal 7, customers[1].id
+    assert_equal 12, customers[2].id
+    assert_equal 14, customers[3].id
   end
 end
