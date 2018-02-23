@@ -31,4 +31,8 @@ class Invoice
   def customer
     @invoice_repository.find_customer_by_id @customer_id
   end
+
+  def total
+    @invoice_repository.invoice_items @id
+  end
 end
