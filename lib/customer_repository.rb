@@ -31,8 +31,9 @@ class CustomerRepository
   end
 
   def find_all_by_first_name(name)
+    name = name.downcase
     @customers.select do |customer|
-      customer.first_name == name
+      customer.first_name.downcase.include? name
     end
   end
 end
