@@ -29,6 +29,6 @@ class Invoice
   end
 
   def customer
-    @invoice_repository.find_customer_by_id @id
+    @invoice_repository.find_customer_by_id @customer_id
   end
 end
