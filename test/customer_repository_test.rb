@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'test_helper.rb'
 
 require './lib/customer_repository.rb'
@@ -72,10 +74,17 @@ class CustomerRepositoryTest < Minitest::Test
 
     assert_instance_of Array, customers
     assert_equal 4, customers.length
+    check_customers(customers)
+    check_customer_ids(customers)
+  end
+
+  def check_customers(customers)
     customers.each do |customer|
       assert_instance_of Customer, customer
     end
+  end
 
+  def check_customer_ids(customers)
     assert_equal 5, customers[0].id
     assert_equal 7, customers[1].id
     assert_equal 12, customers[2].id
