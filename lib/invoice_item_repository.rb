@@ -30,7 +30,9 @@ class InvoiceItemRepository
     end
   end
 
-  def find_all_by_item_id
-
+  def find_all_by_item_id(item_id)
+    @invoice_items.select do |invoice_item|
+      invoice_item.item_id == item_id
+    end
   end
 end
