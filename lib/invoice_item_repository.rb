@@ -4,13 +4,12 @@ require_relative 'invoice_item'
 
 # Defines an InvoiceItemRepository which holds InvoiceItems
 class InvoiceItemRepository
-  def initialize(filename, sales_engine)
+  def initialize(sales_engine)
     @invoice_items = []
     @sales_engine = sales_engine
-    load_invoice_items filename
   end
 
-  def load_invoice_items(filename)
+  def from_csv(filename)
     CSV.foreach(
       filename,
       headers: true,
