@@ -29,4 +29,13 @@ class InvoiceItemRepositoryTest < Minitest::Test
     assert_equal 9, item.id
     assert_equal 299.73, item.unit_price
   end
+
+  def test_can_find_item_by_item_id
+    items = @repo.find_all_by_item_id 1
+    assert_instance_of Array, items
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+      assert_equal 1, item.item_id
+    end
+  end
 end
