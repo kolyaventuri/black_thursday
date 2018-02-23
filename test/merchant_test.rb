@@ -46,4 +46,16 @@ class MerchantTest < Minitest::Test
       assert_equal 7, invoice.merchant_id
     end
   end
+
+  def test_can_get_customers
+    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 4
+    customers = merchant.customers
+
+    assert_instance_of Array, customers
+    assert_equal 4, customers.length
+
+    customers.each do |customer|
+      assert_instance_of Customer, customer
+    end
+  end
 end
