@@ -28,4 +28,8 @@ class InvoiceItem
   def price_to_big_decimal(price)
     BigDecimal.new(price.to_i)
   end
+
+  def unit_price_to_dollars
+    @unit_price / 100.0
+  end
 end
