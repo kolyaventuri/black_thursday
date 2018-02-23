@@ -46,4 +46,11 @@ class InvoiceTest < Minitest::Test
       assert_instance_of Item, item
     end
   end
+
+  def test_can_get_customer
+    customer = @invoice.customer
+    assert_instance_of Customer, customer
+    assert_equal 7, customer.id
+    assert_equal 'Parker', customer.first_name
+  end
 end
