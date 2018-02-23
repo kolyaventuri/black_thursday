@@ -33,6 +33,10 @@ class Invoice
   end
 
   def total
-    @invoice_repository.invoice_items @id
+    items = @invoice_repository.invoice_items @id
+    total = items.map do |item|
+      item.unit_price * item.quantity
+    end.reduce(:+)
+    total.to_f
   end
 end
