@@ -36,4 +36,11 @@ class CustomerRepository
       customer.first_name.downcase.include? name
     end
   end
+
+  def find_all_by_last_name(name)
+    name = name.downcase
+    @customers.select do |customer|
+      customer.last_name.downcase.include? name
+    end
+  end
 end

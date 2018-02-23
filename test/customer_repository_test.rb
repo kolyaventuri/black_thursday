@@ -63,8 +63,8 @@ class CustomerRepositoryTest < Minitest::Test
       assert_instance_of Customer, customer
     end
 
-    assert_equal 11, customers[0].id
-    assert_equal 15, customers[1].id
+    assert_equal 10, customers[0].id
+    assert_equal 11, customers[1].id
   end
 
   def test_it_can_search_by_last_name_fragment
