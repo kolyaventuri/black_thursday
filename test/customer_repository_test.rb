@@ -94,4 +94,15 @@ class CustomerRepositoryTest < Minitest::Test
   def test_it_overrides_inspect
     assert_equal '#<CustomerRepository 15 rows>', @repo.inspect
   end
+
+  def test_it_can_get_list_of_merchants
+    merchants = @repo.merchants 6
+
+    assert_instance_of Array, merchants
+    assert_equal 2, merchants.length
+
+    merchants.each do |merchant|
+      assert_instance_of Merchant, merchant
+    end
+  end
 end
