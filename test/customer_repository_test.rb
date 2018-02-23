@@ -37,7 +37,7 @@ class CustomerRepositoryTest < Minitest::Test
       assert_instance_of Customer, customer
     end
 
-    assert_equal 11, customer[0].id
-    assert_equal 15, customer[1].id
+    assert_equal 11, customers[0].id
+    assert_equal 15, customers[1].id
   end
 end

@@ -29,4 +29,10 @@ class CustomerRepository
       customer.id == id
     end
   end
+
+  def find_all_by_first_name(name)
+    @customers.select do |customer|
+      customer.first_name == name
+    end
+  end
 end
