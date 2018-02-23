@@ -12,4 +12,12 @@ class CustomerRepositoryTest < Minitest::Test
   def test_can_create_repository
     assert_instance_of CustomerRepository, @repo
   end
+
+  def test_can_load_all_customers
+    customers = @repo.all
+    assert_instance_of Array, customers
+    customers.each do |customer|
+      assert_instance_of Customer, customer
+    end
+  end
 end
