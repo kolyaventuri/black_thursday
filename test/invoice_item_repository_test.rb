@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 require_relative 'test_helper.rb'
 
 require './lib/invoice_item_repository.rb'
@@ -20,14 +22,14 @@ class InvoiceItemRepositoryTest < Minitest::Test
       assert_instance_of InvoiceItem, item
     end
 
-    assert_equal 136.35, items[0].unit_price
+    assert_equal BigDecimal.new(13635), items[0].unit_price
   end
 
   def test_can_find_invoice_item_by_id
     item = @repo.find_by_id 9
     assert_instance_of InvoiceItem, item
     assert_equal 9, item.id
-    assert_equal 299.73, item.unit_price
+    assert_equal BigDecimal.new(29973), item.unit_price
   end
 
   def test_can_find_item_by_item_id
