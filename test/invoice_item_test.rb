@@ -8,6 +8,6 @@ class InvoiceItemTest < Minitest::Test
   end
 
   def test_can_create_invoice_item
-    assert_instance_of InvocieItem, @item
+    assert_instance_of InvoiceItem, @item
   end
 end
