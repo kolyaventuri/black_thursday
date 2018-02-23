@@ -3,6 +3,7 @@
 require_relative 'test_helper.rb'
 
 require './lib/customer.rb'
+require './test/mocks/test_engine'
 
 class CustomerTest < Minitest::Test
   TIME = Time.parse '2012-03-27 14:54:09 UTC'
@@ -30,5 +31,16 @@ class CustomerTest < Minitest::Test
     assert_equal 'Clarke', @customer.last_name
     assert_equal TIME, @customer.created_at
     assert_equal TIME, @customer.updated_at
+  end
+
+  def test_it_can_get_list_of_merchants
+    merchants = @customer.merchants
+
+    assert_instance_of Array, merchants
+    assert_equal 2, merchants.length
+
+    merchants.each do |merchant|
+      assert_instance_of Merchant, merchant
+    end
   end
 end
