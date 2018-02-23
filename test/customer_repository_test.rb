@@ -7,8 +7,8 @@ require './test/mocks/test_engine'
 
 class CustomerRepositoryTest < Minitest::Test
   def setup
-    @repo = CustomerRepository.new MOCK_CUSTOMER_REPOSITORY
-    @repo.from_csv './test/fixtures/customers.csv'
+    @repo = CustomerRepository.new './test/fixtures/customers.csv',
+                                   MOCK_CUSTOMER_REPOSITORY
   end
 
   def test_can_create_repository
