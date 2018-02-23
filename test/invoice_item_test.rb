@@ -35,7 +35,7 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 7, @item.item_id
     assert_equal 8, @item.invoice_id
     assert_equal 1, @item.quantity
-    assert_equal BigDecimal.new(1099), @item.unit_price
+    assert_equal BigDecimal.new(1099) / 100.0, @item.unit_price
     assert_equal TIME, @item.created_at
     assert_equal TIME, @item.updated_at
   end

@@ -26,10 +26,10 @@ class InvoiceItem
   end
 
   def price_to_big_decimal(price)
-    BigDecimal.new(price.to_i)
+    BigDecimal.new(price.to_i) / 100.0
   end
 
   def unit_price_to_dollars
-    @unit_price / 100.0
+    @unit_price
   end
 end
