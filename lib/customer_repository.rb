@@ -45,6 +45,12 @@ class CustomerRepository
     end
   end
 
+  def merchants(id)
+    @sales_engine.invoices.find_all_by_customer_id(id).map do |invoice|
+      @sales_engine.merchants.find_by_id invoice.merchant_id
+    end
+  end
+
   def inspect
     "#<#{self.class} #{@customers.length} rows>"
   end
