@@ -6,13 +6,15 @@ require_relative '../lib/sales_engine'
 require_relative '../lib/item_repository'
 require_relative '../lib/merchant_repository'
 require_relative '../lib/invoice_repository'
+require_relative '../lib/invoice_item_repository'
 
 class SalesEngineTest < Minitest::Test
   def setup
     @se = SalesEngine.from_csv(
       items: './test/fixtures/items.csv',
       merchants: './test/fixtures/merchants.csv',
-      invoices: './test/fixtures/invoices.csv'
+      invoices: './test/fixtures/invoices.csv',
+      invoice_items: './test/fixtures/invoice_items.csv'
     )
   end
 
@@ -30,5 +32,9 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_has_invoice_repository
     assert_instance_of InvoiceRepository, @se.invoices
+  end
+
+  def test_it_has_invoice_item_repository
+    assert_instance_of InvoiceItemRepository, @se.invoice_items
   end
 end

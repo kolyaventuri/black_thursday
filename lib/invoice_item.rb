@@ -26,6 +26,6 @@ class InvoiceItem
   end
 
   def price_to_big_decimal(price)
-    BigDecimal.new(price.to_i) / 100.0
+    BigDecimal.new(price.to_i)
   end
 end
