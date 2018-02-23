@@ -3,6 +3,7 @@
 require_relative '../../lib/sales_engine'
 require_relative '../../lib/item_repository'
 require_relative '../../lib/merchant_repository'
+require_relative '../../lib/invoice_item_repository'
 
 MOCK_SALES_ENGINE = SalesEngine.from_csv(
   invoices: './test/fixtures/invoices.csv',
