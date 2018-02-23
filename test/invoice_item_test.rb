@@ -9,18 +9,19 @@ require './test/mocks/test_engine'
 
 class InvoiceItemTest < Minitest::Test
   TIME = Time.parse '2009-02-07'
+  INVOICE_ITEM_DATA = {
+    id: 6,
+    item_id: 7,
+    invoice_id: 8,
+    quantity: 1,
+    unit_price: '1099',
+    created_at: '2009-02-07',
+    updated_at: '2009-02-07'
+  }.freeze
 
   def setup
     @item = InvoiceItem.new(
-      {
-        id: 6,
-        item_id: 7,
-        invoice_id: 8,
-        quantity: 1,
-        unit_price: '1099',
-        created_at: '2009-02-07',
-        updated_at: '2009-02-07'
-      },
+      INVOICE_ITEM_DATA,
       MOCK_INVOICE_ITEM_REPOSITORY
     )
   end
