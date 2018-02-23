@@ -7,6 +7,7 @@ require_relative '../lib/item_repository'
 require_relative '../lib/merchant_repository'
 require_relative '../lib/invoice_repository'
 require_relative '../lib/invoice_item_repository'
+require_relative '../lib/customer_repository'
 
 class SalesEngineTest < Minitest::Test
   def setup
@@ -36,5 +37,9 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_has_invoice_item_repository
     assert_instance_of InvoiceItemRepository, @se.invoice_items
+  end
+
+  def test_it_has_customer_repository
+    assert_instance_of CustomerRepository, @se.customers
   end
 end

@@ -2,7 +2,7 @@ require_relative 'test_helper.rb'
 
 require './lib/customer_repository.rb'
 
-class ClassNameTest < Minitest::Test
+class CustomerRepositoryTest < Minitest::Test
   def setup
     @repo = CustomerRepository.new
     @repo.from_csv './test/fixtures/customers.csv'
