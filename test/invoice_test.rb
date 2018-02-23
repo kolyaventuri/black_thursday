@@ -53,4 +53,8 @@ class InvoiceTest < Minitest::Test
     assert_equal 7, customer.id
     assert_equal 'Parker', customer.first_name
   end
+
+  def test_can_get_total_amount
+    assert_equal 7045.78, @invoice.total
+  end
 end
