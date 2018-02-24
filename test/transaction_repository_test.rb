@@ -24,8 +24,8 @@ class TransactionRepositoryTest < Minitest::Test
       assert_instance_of Transaction, transaction
     end
 
-    assert_equal '4177816490204479', transactions[1].credit_card_number
-    assert_equal '4297222478855497', transactions[4].credit_card_number
+    assert_equal 4177816490204479, transactions[1].credit_card_number
+    assert_equal 4297222478855497, transactions[4].credit_card_number
   end
 
   def test_can_find_by_transaction_id
@@ -40,8 +40,8 @@ class TransactionRepositoryTest < Minitest::Test
     assert_instance_of Array, result
     assert_instance_of Transaction, result[0]
     assert_instance_of Transaction, result[1]
-    assert_equal '4068631943231473', result[0].credit_card_number
-    assert_equal '4318767847968505', result[1].credit_card_number
+    assert_equal 4068631943231473, result[0].credit_card_number
+    assert_equal 4318767847968505, result[1].credit_card_number
   end
 
   def test_empty_invoice_id_array_returns_when_no_match
