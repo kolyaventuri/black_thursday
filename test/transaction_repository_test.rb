@@ -84,4 +84,8 @@ class TransactionRepositoryTest < Minitest::Test
     assert_instance_of Array, result
     assert result.empty?
   end
+
+  def test_does_override_inspect
+    assert_equal '#<TransactionRepository 19 rows>', @tr.inspect
+  end
 end

@@ -50,4 +50,8 @@ class TransactionRepository
     end
     selected.nil? ? [] : selected
   end
+
+  def inspect
+    "#<#{self.class} #{@transactions.length} rows>"
+  end
 end
