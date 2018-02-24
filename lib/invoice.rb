@@ -23,4 +23,20 @@ class Invoice
   def merchant
     @invoice_repository.merchant @merchant_id
   end
+
+  def items
+    @invoice_repository.find_items_by_invoice_id @id
+  end
+
+  def customer
+    @invoice_repository.find_customer_by_id @customer_id
+  end
+
+  def total
+    items = @invoice_repository.invoice_items @id
+    total = items.map do |item|
+      item.unit_price * item.quantity
+    end.reduce(:+)
+    total.to_f
+  end
 end

@@ -58,4 +58,18 @@ class InvoiceRepository
   def inspect
     "#<#{self.class} #{@invoices.length} rows>"
   end
+
+  def find_items_by_invoice_id(id)
+    invoice_items(id).map do |invoice_item|
+      @sales_engine.items.find_by_id invoice_item.item_id
+    end
+  end
+
+  def find_customer_by_id(id)
+    @sales_engine.customers.find_by_id id
+  end
+
+  def invoice_items(id)
+    @sales_engine.invoice_items.find_all_by_invoice_id id
+  end
 end

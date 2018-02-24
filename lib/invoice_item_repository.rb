@@ -7,10 +7,10 @@ class InvoiceItemRepository
   def initialize(filename, sales_engine)
     @invoice_items = []
     @sales_engine = sales_engine
-    from_csv filename
+    load_from_csv filename
   end
 
-  def from_csv(filename)
+  def load_from_csv(filename)
     CSV.foreach(
       filename,
       headers: true,

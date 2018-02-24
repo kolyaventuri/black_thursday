@@ -7,10 +7,10 @@ class CustomerRepository
   def initialize(filename, sales_engine)
     @customers = []
     @sales_engine = sales_engine
-    from_csv filename
+    load_from_csv filename
   end
 
-  def from_csv(filename)
+  def load_from_csv(filename)
     CSV.foreach(
       filename,
       headers: true,
@@ -42,6 +42,12 @@ class CustomerRepository
     name = name.downcase
     @customers.select do |customer|
       customer.last_name.downcase.include? name
+    end
+  end
+
+  def merchants(id)
+    @sales_engine.invoices.find_all_by_customer_id(id).map do |invoice|
+      @sales_engine.merchants.find_by_id invoice.merchant_id
     end
   end
 

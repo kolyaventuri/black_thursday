@@ -34,7 +34,7 @@ class InvoiceRepositoryTest < Minitest::Test
     result = @invoice_repo.find_by_id 8
 
     assert_instance_of Invoice, result
-    assert_equal 1, result.customer_id
+    assert_equal 7, result.customer_id
     assert_equal 4, result.merchant_id
     assert_equal :shipped, result.status
   end
@@ -43,7 +43,7 @@ class InvoiceRepositoryTest < Minitest::Test
     result = @invoice_repo.find_all_by_customer_id 2
 
     assert_instance_of Array, result
-    assert_equal 8, result.length
+    assert_equal 9, result.length
     result.each do |invoice|
       assert_instance_of Invoice, invoice
       assert_equal 2, invoice.customer_id
@@ -75,5 +75,32 @@ class InvoiceRepositoryTest < Minitest::Test
 
   def test_can_get_merchant
     assert_equal 'GoldenRayPress', @invoice_repo.merchant(7).name
+  end
+
+  def test_can_get_items_from_invoice_id
+    items = @invoice_repo.find_items_by_invoice_id 3
+    assert_instance_of Array, items
+    assert_equal 3, items.length
+    items.each do |item|
+      assert_instance_of Item, item
+    end
+  end
+
+  def test_can_get_customer_by_id
+    customer = @invoice_repo.find_customer_by_id 3
+    assert_instance_of Customer, customer
+    assert_equal 3, customer.id
+    assert_equal 'Mariah', customer.first_name
+  end
+
+  def test_can_get_invoice_items
+    items = @invoice_repo.invoice_items 3
+    assert_instance_of Array, items
+    assert_equal 3, items.length
+
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+      assert_equal 3, item.invoice_id
+    end
   end
 end
