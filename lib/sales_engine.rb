@@ -14,8 +14,9 @@ class SalesEngine
   attr_reader :items,
               :merchants,
               :invoices,
-              :transactions
+              :transactions,
               :invoice_items,
+              :customers
 
   def initialize(files)
     @items = ItemRepository.new files[:items], self

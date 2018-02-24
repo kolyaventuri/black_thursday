@@ -9,7 +9,7 @@ MOCK_SALES_ENGINE = SalesEngine.from_csv(
   invoices: './test/fixtures/invoices.csv',
   items: './test/fixtures/items.csv',
   merchants: './test/fixtures/merchants.csv',
-  transactions: './test/fixtures/transactions.csv'
+  transactions: './test/fixtures/transactions.csv',
   invoice_items: './test/fixtures/invoice_items.csv',
   customers: './test/fixtures/customers.csv'
 )
