@@ -4,9 +4,10 @@ require_relative 'customer'
 
 # Defines the CustomerRepository, which contains Customers
 class CustomerRepository
-  def initialize(sales_engine)
+  def initialize(filename, sales_engine)
     @customers = []
     @sales_engine = sales_engine
+    from_csv filename
   end
 
   def from_csv(filename)

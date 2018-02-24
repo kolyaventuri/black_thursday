@@ -15,6 +15,7 @@ class SalesEngineTest < Minitest::Test
       items: './test/fixtures/items.csv',
       merchants: './test/fixtures/merchants.csv',
       invoices: './test/fixtures/invoices.csv',
+      transactions: './test/fixtures/transactions.csv',
       invoice_items: './test/fixtures/invoice_items.csv',
       customers: './test/fixtures/customers.csv'
     )
@@ -34,6 +35,10 @@ class SalesEngineTest < Minitest::Test
 
   def test_it_has_invoice_repository
     assert_instance_of InvoiceRepository, @se.invoices
+  end
+
+  def test_it_has_transaction_repository
+    assert_instance_of TransactionRepository, @se.transactions
   end
 
   def test_it_has_invoice_item_repository

@@ -9,8 +9,8 @@ require './test/mocks/test_engine'
 
 class InvoiceItemRepositoryTest < Minitest::Test
   def setup
-    @repo = InvoiceItemRepository.new MOCK_SALES_ENGINE
-    @repo.from_csv './test/fixtures/invoice_items.csv'
+    @repo = InvoiceItemRepository.new './test/fixtures/invoice_items.csv',
+                                      MOCK_SALES_ENGINE
   end
 
   def test_does_create_item_repository
