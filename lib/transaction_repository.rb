@@ -52,4 +52,8 @@ class TransactionRepository
   def inspect
     "#<#{self.class} #{@transactions.length} rows>"
   end
+
+  def invoice
+    @sales_engine.transactions
+  end
 end
