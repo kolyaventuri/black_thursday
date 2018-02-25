@@ -52,4 +52,9 @@ class TransactionRepository
   def inspect
     "#<#{self.class} #{@transactions.length} rows>"
   end
+
+  def find_invoice_by_transaction_id(id)
+    transaction = find_by_id id
+    @sales_engine.invoices.find_by_id transaction.invoice_id
+  end
 end

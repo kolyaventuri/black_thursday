@@ -57,4 +57,18 @@ class InvoiceTest < Minitest::Test
   def test_can_get_total_amount
     assert_equal 7045.78, @invoice.total
   end
+
+  def test_can_get_transactions
+    transactions = @invoice.transactions
+    assert_instance_of Array, transactions
+
+    assert_equal 2, transactions.length
+
+    transactions.each do |transaction|
+      assert_instance_of Transaction, transaction
+      assert_equal 3, transaction.invoice_id
+    end
+
+    assert_equal '4279380734327937'.to_i, transactions.first.credit_card_number
+  end
 end

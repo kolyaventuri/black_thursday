@@ -43,7 +43,7 @@ class InvoiceRepositoryTest < Minitest::Test
     result = @invoice_repo.find_all_by_customer_id 2
 
     assert_instance_of Array, result
-    assert_equal 9, result.length
+    assert_equal 8, result.length
     result.each do |invoice|
       assert_instance_of Invoice, invoice
       assert_equal 2, invoice.customer_id
@@ -102,5 +102,19 @@ class InvoiceRepositoryTest < Minitest::Test
       assert_instance_of InvoiceItem, item
       assert_equal 3, item.invoice_id
     end
+  end
+
+  def test_can_get_transactions_by_invoice_id
+    transactions = @invoice_repo.transactions 3
+    assert_instance_of Array, transactions
+
+    assert_equal 2, transactions.length
+
+    transactions.each do |transaction|
+      assert_instance_of Transaction, transaction
+      assert_equal 3, transaction.invoice_id
+    end
+
+    assert_equal '4279380734327937'.to_i, transactions.first.credit_card_number
   end
 end

@@ -86,6 +86,14 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_does_override_inspect
-    assert_equal '#<TransactionRepository 19 rows>', @tr.inspect
+    assert_equal '#<TransactionRepository 20 rows>', @tr.inspect
+  end
+
+  def test_can_get_invoice_by_transaction_id
+    invoice = @tr.find_invoice_by_transaction_id 20
+
+    assert_instance_of Invoice, invoice
+    assert_equal 12, invoice.id
+    assert_equal :returned, invoice.status
   end
 end
