@@ -33,7 +33,7 @@ class Invoice
   end
 
   def transactions
-    @invocie_repository.transactions @id
+    @invoice_repository.transactions @id
   end
 
   def total

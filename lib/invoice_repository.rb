@@ -72,4 +72,8 @@ class InvoiceRepository
   def invoice_items(id)
     @sales_engine.invoice_items.find_all_by_invoice_id id
   end
+
+  def transactions(id)
+    @sales_engine.transactions.find_all_by_invoice_id id
+  end
 end
