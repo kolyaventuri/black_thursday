@@ -130,4 +130,13 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Merchant, merchants[0]
     assert_equal 'Shopin1901', merchants[0].name
   end
+
+  def test_can_find_merchants_with_only_one_item
+    merchants = @sa.merchants_with_only_one_item
+
+    assert_instance_of Array, merchants
+    assert_instance_of Merchant, merchants[0]
+    assert_equal 3, merchants.length
+    assert_equal 'Candisart', merchants[1].name
+  end
 end

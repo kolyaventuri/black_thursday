@@ -230,11 +230,21 @@ class SalesAnalyst
   end
 
   def merchants_with_pending_invoices
-    pending_invoices = @sales_engine.invoices.invoices.select do |invoice|
+    pending_invoices = @sales_engine.invoices.all.select do |invoice|
       invoice.status == :pending
     end
     pending_invoices.map do |pending_invoice|
       @sales_engine.merchants.find_by_id pending_invoice.merchant_id
+    end
+  end
+
+  def merchants_with_only_one_item
+    merch_ids = @sales_engine.items.all.map(&:merchant_id)
+    selected_ids = merch_ids.select do |id|
+      merch_ids.count(id) == 1
+    end
+    selected_ids.map do |id|
+      @sales_engine.merchants.find_by_id id
     end
   end
 end
