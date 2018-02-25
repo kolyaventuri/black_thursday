@@ -30,18 +30,29 @@ class Merchant
 
   def revenue_by_item
     itemized = invoices.select(&:is_paid_in_full?).map(&:itemize).flatten
-    revenues = itemized.map do |invoice_item|
+    per_item = per_item_revenues(itemized)
+    grouped_revenues = group_items per_item
+
+    sum_item_revenue grouped_revenues
+  end
+
+  def per_item_revenues(itemized)
+    itemized.map do |invoice_item|
       {
         item_id: invoice_item.item_id,
         revenue: invoice_item.quantity * invoice_item.unit_price
       }
     end
+  end
 
-    grouped = revenues.group_by do |revenue|
+  def group_items(revenues)
+    revenues.group_by do |revenue|
       revenue[:item_id]
     end
+  end
 
-    grouped.map do |id, item_revenues|
+  def sum_item_revenue(revenues)
+    revenues.map do |id, item_revenues|
       total = item_revenues.reduce(0) do |sum, revenue|
         sum + revenue[:revenue]
       end
@@ -50,15 +61,5 @@ class Merchant
         revenue: total
       }
     end
-
-  end
-
-  def sum_item_revenue(revenues)
-    summed = revenues.inject do |a, b|
-      a.merge b do |_, rev_a, rev_b|
-        rev_a + rev_b
-      end
-    end
-    summed[:total]
   end
 end
