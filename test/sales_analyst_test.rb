@@ -130,4 +130,10 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Merchant, merchants[0]
     assert_equal 'Shopin1901', merchants[0].name
   end
+
+  def test_can_get_revenue_by_merchant
+    revenue = @sa.revenue_by_merchant 2
+
+    assert_equal BigDecimal(1_233_491) / 100.0, revenue
+  end
 end
