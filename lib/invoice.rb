@@ -50,6 +50,6 @@ class Invoice
     total = items.map do |item|
       item.unit_price * item.quantity
     end.reduce(:+)
-    total.to_f
+    total
   end
 end

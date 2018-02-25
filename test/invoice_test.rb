@@ -55,7 +55,7 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_can_get_total_amount
-    assert_equal 7045.78, @invoice.total
+    assert_equal BigDecimal(704_578) / 100.0, @invoice.total
   end
 
   def test_can_check_if_paid_in_full
