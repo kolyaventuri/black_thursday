@@ -136,4 +136,11 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal BigDecimal(1_233_491) / 100.0, revenue
   end
+
+  def test_can_get_merchants_best_item
+    item = @sa.best_item_for_merchant 2
+
+    assert_instance_of Item, item
+    assert_equal 4, item.id
+  end
 end
