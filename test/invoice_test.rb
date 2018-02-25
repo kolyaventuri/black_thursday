@@ -58,6 +58,7 @@ class InvoiceTest < Minitest::Test
     assert_equal BigDecimal.new(704_578) / 100.0, @invoice.total
   end
 
+  # rubocop:disable MethodLength
   def test_can_check_if_paid_in_full
     assert_equal false, @invoice.is_paid_in_full?
 
@@ -75,6 +76,7 @@ class InvoiceTest < Minitest::Test
 
     assert_equal true, invoice.is_paid_in_full?
   end
+  # rubocop:enable MethodLength
 
   def test_can_get_transactions
     transactions = @invoice.transactions
