@@ -109,7 +109,7 @@ class InvoiceTest < Minitest::Test
 
     assert_equal 3, items.length
     items.each do |item|
-      asser_instance_of InvoiceItem, item
+      assert_instance_of InvoiceItem, item
     end
   end
 end
