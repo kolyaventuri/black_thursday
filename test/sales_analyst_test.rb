@@ -104,7 +104,7 @@ class SalesAnalystTest < Minitest::Test
     expected = @sa.total_revenue_by_date(date)
 
     assert_instance_of BigDecimal, expected
-    assert_equal BigDecimal.new(528_913) / 100.0, expected
+    assert_equal BigDecimal.new(1_233_491) / 100.0, expected
   end
 
   def test_it_can_get_top_revenue_earners
@@ -115,7 +115,7 @@ class SalesAnalystTest < Minitest::Test
     earners.each do |earner|
       assert_instance_of Merchant, earner
     end
-    assert_equal 1, earners.first.id
+    assert_equal 2, earners.first.id
 
     earners = @sa.top_revenue_earners
 
