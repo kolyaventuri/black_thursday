@@ -254,4 +254,12 @@ class SalesAnalyst
 
     @sales_engine.items.find_by_id top_item[:id]
   end
+
+  def merchants_ranked_by_revenue
+    merchants = @sales_engine.merchants.all
+    
+    merchants.sort_by do |merchant|
+      -merchant.revenue
+    end
+  end
 end
