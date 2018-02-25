@@ -52,7 +52,7 @@ class MerchantTest < Minitest::Test
     customers = merchant.customers
 
     assert_instance_of Array, customers
-    assert_equal 4, customers.length
+    assert_equal 3, customers.length
 
     customers.each do |customer|
       assert_instance_of Customer, customer
