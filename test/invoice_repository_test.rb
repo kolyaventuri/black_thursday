@@ -103,4 +103,18 @@ class InvoiceRepositoryTest < Minitest::Test
       assert_equal 3, item.invoice_id
     end
   end
+
+  def test_can_get_transactions_by_invoice_id
+    transactions = @invoice_repo.transactions 3
+    assert_instance_of Array, transactions
+
+    assert_equal 2, transactions.length
+
+    transactions.each do |transaction|
+      assert_instance_of Transaction, transaction
+      assert_equal 3, transaction.invoice_id
+    end
+
+    assert_equal '4279380734327937'.to_i, transactions.first.credit_card_number
+  end
 end
