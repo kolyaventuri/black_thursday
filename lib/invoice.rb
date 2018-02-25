@@ -49,9 +49,9 @@ class Invoice
 
   def total
     items = @invoice_repository.invoice_items @id
-    total = items.map do |item|
+    total_sum = items.map do |item|
       item.unit_price * item.quantity
     end.reduce(:+)
-    total
+    total_sum
   end
 end

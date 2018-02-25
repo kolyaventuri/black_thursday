@@ -127,6 +127,6 @@ class MerchantRepositoryTest < Minitest::Test
     mr = MerchantRepository.new './test/fixtures/merchants.csv',
                                 MOCK_SALES_ENGINE
 
-    assert_equal (BigDecimal(285572) / 100.0), mr.revenue(3)
+    assert_equal (BigDecimal(1_233_491) / 100.0), mr.revenue(2)
   end
 end

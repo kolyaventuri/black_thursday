@@ -60,8 +60,8 @@ class MerchantTest < Minitest::Test
   end
 
   def test_can_get_total_revenue
-    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 3
+    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 2
 
-    assert_equal BigDecimal(285572) / 100.0, merchant.revenue
+    assert_equal BigDecimal(1_233_491) / 100.0, merchant.revenue
   end
 end
