@@ -53,7 +53,8 @@ class TransactionRepository
     "#<#{self.class} #{@transactions.length} rows>"
   end
 
-  def invoice
-    @sales_engine.transactions
+  def find_invoice_by_transaction_id(id)
+    transaction = find_by_id id
+    @sales_engine.invoices.find_by_id transaction.invoice_id
   end
 end

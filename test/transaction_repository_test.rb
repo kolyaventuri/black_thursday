@@ -90,9 +90,10 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_can_get_invoice_by_transaction_id
-    transaction = @tr.find_by_id 20
+    invoice = @tr.find_invoice_by_transaction_id 20
 
-    assert_instance_of Invoice, transaction.invoice
-    assert_equal 12, transaction.invoice.id
+    assert_instance_of Invoice, invoice
+    assert_equal 12, invoice.id
+    assert_equal :returned, invoice.status
   end
 end
