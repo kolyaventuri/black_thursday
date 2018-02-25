@@ -208,18 +208,21 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(limit = 20)
-    merchants = @sales_engine.merchants.all.map do |merchant|
-      {
-        id: merchant.id,
-        revenue: merchant.revenue
-      }
-    end
-    sorted_merchants = merchants.sort_by do |merchant|
+    sorted_merchants = merchants_revenue.sort_by do |merchant|
       -merchant[:revenue]
     end
 
     sorted_merchants[0...limit].map do |merchant|
       @sales_engine.merchants.find_by_id merchant[:id]
+    end
+  end
+
+  def merchants_revenue
+    @sales_engine.merchants.all.map do |merchant|
+      {
+        id: merchant.id,
+        revenue: merchant.revenue
+      }
     end
   end
 
