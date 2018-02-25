@@ -214,6 +214,7 @@ class SalesAnalyst
         total: invoice.total || 0
       }
     end
+    
     totals_by_merchant = totals_merchant.group_by do |key, value|
       key[:merchant_id]
     end
