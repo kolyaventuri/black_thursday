@@ -143,4 +143,18 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Item, item
     assert_equal 1, item.id
   end
+
+  def test_can_rank_merchants_by_revenue
+    merchants = @sa.merchants_ranked_by_revenue
+
+    assert_instance_of Array, merchants
+    assert_equal 9, merchants.length
+
+    merchants.each do |merchant|
+      assert_instance_of Merchant, merchant
+    end
+
+    assert_equal 2, merchants.first.id
+    assert_equal 9, merchants.last.id
+  end
 end
