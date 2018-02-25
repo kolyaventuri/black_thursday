@@ -58,6 +58,24 @@ class InvoiceTest < Minitest::Test
     assert_equal 7045.78, @invoice.total
   end
 
+  def test_can_check_if_paid_in_full
+    assert_equal false, @invoice.is_paid_in_full?
+
+    invoice = Invoice.new(
+      {
+        id: 2,
+        customer_id: 7,
+        merchant_id: 8,
+        status: 'pending',
+        created_at: '2016-01-11 17:42:32 UTC',
+        updated_at: '2016-01-11 17:42:32 UTC'
+      },
+      MOCK_INVOICE_REPOSITORY
+    )
+
+    assert_equal true, invoice.is_paid_in_full?
+  end
+
   def test_can_get_transactions
     transactions = @invoice.transactions
     assert_instance_of Array, transactions
