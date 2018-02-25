@@ -122,4 +122,11 @@ class MerchantRepositoryTest < Minitest::Test
       assert_instance_of Customer, customer
     end
   end
+
+  def test_can_get_merchant_revenue_by_id
+    mr = MerchantRepository.new './test/fixtures/merchants.csv',
+                                MOCK_SALES_ENGINE
+
+    assert_equal (BigDecimal(285572) / 100.0), mr.revenue(3)
+  end
 end
