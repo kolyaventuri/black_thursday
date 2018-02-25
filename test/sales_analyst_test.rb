@@ -106,4 +106,21 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of BigDecimal, expected
     assert_equal 7045.78, expected
   end
+
+  def test_it_can_get_top_revenue_earners
+    earners = @sa.top_revenue_earners 3
+
+    assert_instance_of Array, earners
+    assert_equal 3, earners.length
+
+    earners.each do |earner|
+      assert_instance_of Merchant, earner
+    end
+    assert_equal 4, earners.first.id
+
+    earners = @sa.top_revenue_earners
+
+    assert_instance_of Array, earners
+    assert_equal 9, earners.length
+  end
 end
