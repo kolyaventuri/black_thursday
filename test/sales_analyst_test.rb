@@ -109,14 +109,13 @@ class SalesAnalystTest < Minitest::Test
 
   def test_it_can_get_top_revenue_earners
     earners = @sa.top_revenue_earners 3
-
     assert_instance_of Array, earners
     assert_equal 3, earners.length
 
     earners.each do |earner|
       assert_instance_of Merchant, earner
     end
-    assert_equal 4, earners.first.id
+    assert_equal 8, earners.first.id
 
     earners = @sa.top_revenue_earners
 
