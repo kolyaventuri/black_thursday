@@ -1,6 +1,5 @@
 id,customer_id,merchant_id,status,created_at,updated_at
 1,1,1,pending,2009-02-07,2014-03-15
-1,1,1,pending,2009-02-07,2014-03-15
 2,6,2,shipped,2012-11-23,2013-04-14
 2,1,2,shipped,2012-11-23,2013-04-14
 3,6,3,shipped,2009-12-09,2010-07-10
@@ -17,3 +16,4 @@ id,customer_id,merchant_id,status,created_at,updated_at
 13,2,7,shipped,2016-06-05,2015-01-20
 14,2,8,pending,2012-11-12,2015-01-20
 16,2,8,pending,2013-12-17,2015-01-20
+17,1,1,pending,2009-02-08,2014-03-15

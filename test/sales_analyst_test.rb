@@ -97,4 +97,13 @@ class SalesAnalystTest < Minitest::Test
   def test_it_can_get_busiest_days
     assert_equal ['Friday'], @sa.top_days_by_invoice_count
   end
+
+  def test_it_can_get_total_revenue_by_date
+    date = Time.parse '2009-12-09'
+
+    expected = @sa.total_revenue_by_date(date)
+
+    assert_instance_of BigDecimal, expected
+    assert_equal 7045.78, expected
+  end
 end
