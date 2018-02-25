@@ -32,6 +32,10 @@ class Invoice
     @invoice_repository.find_customer_by_id @customer_id
   end
 
+  def transactions
+    @invocie_repository.transactions @id
+  end
+
   def total
     items = @invoice_repository.invoice_items @id
     total = items.map do |item|
