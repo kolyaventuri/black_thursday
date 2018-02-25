@@ -36,6 +36,7 @@ class Invoice
     @invoice_repository.transactions @id
   end
 
+  # rubocop:disable PredicateName
   def is_paid_in_full?
     return false if transactions.empty?
     failed = transactions.select do |transaction|
@@ -44,6 +45,7 @@ class Invoice
     return false unless failed.empty?
     true
   end
+  # rubocop:enable PredicateName
 
   def total
     items = @invoice_repository.invoice_items @id
