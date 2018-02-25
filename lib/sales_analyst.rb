@@ -252,6 +252,6 @@ class SalesAnalyst
       -item[:revenue]
     end.first
 
-    @sales_engine.items.find_by_id top_item.id
+    @sales_engine.items.find_by_id top_item[:id]
   end
 end

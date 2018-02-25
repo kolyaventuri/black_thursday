@@ -76,6 +76,6 @@ class MerchantTest < Minitest::Test
       -item[:revenue]
     end
 
-    assert_equal BigDecimal(563_432) / 100.0, sorted.first[:revenue]
+    assert_equal BigDecimal(407_487) / 100.0, sorted.first[:revenue]
   end
 end

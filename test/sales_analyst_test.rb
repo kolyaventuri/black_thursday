@@ -141,6 +141,6 @@ class SalesAnalystTest < Minitest::Test
     item = @sa.best_item_for_merchant 2
 
     assert_instance_of Item, item
-    assert_equal 4, item.id
+    assert_equal 1, item.id
   end
 end
