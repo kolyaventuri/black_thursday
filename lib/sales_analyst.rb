@@ -197,4 +197,13 @@ class SalesAnalyst
     day_values = days.values
     day_values.concat Array.new(7 - day_values.length, 0)
   end
+
+  def total_revenue_by_date(date)
+    invoices = @sales_engine.invoices.all.select do |invoice|
+      invoice.created_at == date
+    end
+    return 0 if invoices.empty?
+
+    invoices.map(&:total).reduce(:+)
+  end
 end
