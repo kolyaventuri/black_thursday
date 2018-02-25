@@ -39,7 +39,7 @@ class Invoice
   def is_paid_in_full?
     return false if transactions.empty?
     failed = transactions.select do |transaction|
-      transaction.result == :failed
+      transaction.result == 'failed'
     end
     return false unless failed.empty?
     true

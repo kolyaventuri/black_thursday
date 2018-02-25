@@ -69,7 +69,7 @@ class TransactionRepositoryTest < Minitest::Test
   end
 
   def test_can_find_all_by_result
-    result = @tr.find_all_by_result :failed
+    result = @tr.find_all_by_result 'failed'
 
     assert_instance_of Array, result
     assert_instance_of Transaction, result[0]
