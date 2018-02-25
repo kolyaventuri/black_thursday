@@ -32,7 +32,7 @@ class TransactionTest < Minitest::Test
   end
 
   def test_stores_transaction_time_and_payment_result
-    assert_equal 'success', @transaction.result
+    assert_equal :success, @transaction.result
     assert_equal Time.parse('2012-02-26 20:56:57 UTC'), @transaction.created_at
     assert_equal Time.parse('2012-02-26 20:56:57 UTC'), @transaction.updated_at
   end
