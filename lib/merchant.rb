@@ -23,4 +23,8 @@ class Merchant
   def customers
     @merchant_repository.customers @id
   end
+
+  def revenue
+    @merchant_repository.revenue @id
+  end
 end
