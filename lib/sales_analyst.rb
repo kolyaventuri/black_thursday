@@ -237,4 +237,8 @@ class SalesAnalyst
       @sales_engine.merchants.find_by_id pending_invoice.merchant_id
     end
   end
+
+  def revenue_by_merchant(id)
+    @sales_engine.merchants.find_by_id(id).revenue
+  end
 end
