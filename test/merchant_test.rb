@@ -64,4 +64,18 @@ class MerchantTest < Minitest::Test
 
     assert_equal BigDecimal(1_233_491) / 100.0, merchant.revenue
   end
+
+  def test_can_get_items_by_revenue
+    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 2
+    items = merchant.revenue_by_item
+
+    assert_instance_of Array, items
+    assert_equal 6, items.length
+
+    sorted = items.sort_by do |item|
+      -item[:revenue]
+    end
+
+    assert_equal BigDecimal(563_432) / 100.0, sorted.first[:revenue]
+  end
 end
