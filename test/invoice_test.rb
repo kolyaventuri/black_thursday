@@ -57,4 +57,9 @@ class InvoiceTest < Minitest::Test
   def test_can_get_total_amount
     assert_equal 7045.78, @invoice.total
   end
+
+  def test_can_get_transactions
+    transactions = @invoice.transactions
+    assert_instance_of Array, transactions
+  end
 end
