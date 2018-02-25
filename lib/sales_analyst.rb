@@ -249,4 +249,14 @@ class SalesAnalyst
       running_sum + invoice[:total]
     end
   end
+
+  def merchants_with_pending_invoices
+    pending_invoices = @sales_engine.invoices.invoices.select do |invoice|
+      invoice.status == :pending
+    end
+    binding.pry
+    pending_invoices.map do |pending_invoice|
+      @sales_engine.merchants.find_by_id pending_invoice.merchant_id
+    end
+  end
 end

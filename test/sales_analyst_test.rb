@@ -122,4 +122,12 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Array, earners
     assert_equal 9, earners.length
   end
+
+  def test_can_find_merchants_with_pending_invoices
+    merchants = @sa.merchants_with_pending_invoices
+
+    assert_instance_of Array, merchants
+    assert_instance_of Merchant, merchants[0]
+    assert_equal 'Shopin1901', merchants[0].name
+  end
 end
