@@ -218,10 +218,14 @@ class SalesAnalyst
       -merchant[:revenue]
     end
 
-    sorted_merchants[0...limit].map do |merchant|
+    binding.pry
+
+    sorted = sorted_merchants[0...limit].map do |merchant|
       @sales_engine.merchants.find_by_id merchant[:id]
     end
 
+    binding.pry
+    sorted
 
   end
 

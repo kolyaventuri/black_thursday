@@ -39,10 +39,10 @@ class Invoice
   # rubocop:disable PredicateName
   def is_paid_in_full?
     return false if transactions.empty?
-    failed = transactions.select do |transaction|
-      transaction.result == 'failed'
+    success = transactions.select do |transaction|
+      transaction.result == 'success'
     end
-    return false unless failed.empty?
+    return false if success.empty?
     true
   end
   # rubocop:enable PredicateName

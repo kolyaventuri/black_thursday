@@ -71,11 +71,11 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_can_check_if_paid_in_full
-    assert_equal false, @invoice.is_paid_in_full?
+    assert_equal true, @invoice.is_paid_in_full?
 
     invoice = Invoice.new(
       {
-        id: 2,
+        id: 5,
         customer_id: 7,
         merchant_id: 8,
         status: 'pending',
@@ -85,7 +85,7 @@ class InvoiceTest < Minitest::Test
       MOCK_INVOICE_REPOSITORY
     )
 
-    assert_equal true, invoice.is_paid_in_full?
+    assert_equal false, invoice.is_paid_in_full?
   end
   # rubocop:enable MethodLength
 
