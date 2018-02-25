@@ -43,7 +43,7 @@ class InvoiceRepositoryTest < Minitest::Test
     result = @invoice_repo.find_all_by_customer_id 2
 
     assert_instance_of Array, result
-    assert_equal 9, result.length
+    assert_equal 8, result.length
     result.each do |invoice|
       assert_instance_of Invoice, invoice
       assert_equal 2, invoice.customer_id
