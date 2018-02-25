@@ -55,8 +55,28 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_can_get_total_amount
-    assert_equal 7045.78, @invoice.total
+    assert_equal BigDecimal.new(704_578) / 100.0, @invoice.total
   end
+
+  # rubocop:disable MethodLength
+  def test_can_check_if_paid_in_full
+    assert_equal false, @invoice.is_paid_in_full?
+
+    invoice = Invoice.new(
+      {
+        id: 2,
+        customer_id: 7,
+        merchant_id: 8,
+        status: 'pending',
+        created_at: '2016-01-11 17:42:32 UTC',
+        updated_at: '2016-01-11 17:42:32 UTC'
+      },
+      MOCK_INVOICE_REPOSITORY
+    )
+
+    assert_equal true, invoice.is_paid_in_full?
+  end
+  # rubocop:enable MethodLength
 
   def test_can_get_transactions
     transactions = @invoice.transactions
