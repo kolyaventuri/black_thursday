@@ -208,41 +208,21 @@ class SalesAnalyst
   end
 
   def top_revenue_earners(limit = 20)
-    totals_merchant = @sales_engine.invoices.all.map do |invoice|
+    merchants = @sales_engine.merchants.all.map do |merchant|
       {
-        merchant_id: invoice.merchant_id,
-        total: invoice.total || 0
+        id: merchant.id,
+        revenue: merchant.revenue
       }
     end
-    
-    totals_by_merchant = totals_merchant.group_by do |key, value|
-      key[:merchant_id]
+    sorted_merchants = merchants.sort_by do |merchant|
+      -merchant[:revenue]
     end
 
-    merchant_totals = totals_by_merchant.map do |merch_id, totals|
-      {
-        id: merch_id,
-        total: sum_totals(totals)
-      }
-    end
-
-    sorted = merchant_totals.sort_by do |totals|
-      totals[:total]
-    end
-
-    merchant_list = sorted.map do |merchant|
+    sorted_merchants[0...limit].map do |merchant|
       @sales_engine.merchants.find_by_id merchant[:id]
     end
 
-    @sales_engine.merchants.all.each do |merchant|
-      found_merchant = merchant_list.find do |merch|
-        merch.id == merchant.id
-      end
-      merchant_list.push merchant unless found_merchant
-      break if merchant_list.length == limit
-    end
-
-    merchant_list[0...limit]
+    binding.pry
   end
 
   def sum_totals(totals)

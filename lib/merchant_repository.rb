@@ -65,6 +65,6 @@ class MerchantRepository
   end
 
   def revenue(id)
-    invoices(id).map(&:total).reduce(:+)
+    invoices(id).map(&:total).reduce(:+) || 0
   end
 end

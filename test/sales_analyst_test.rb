@@ -115,7 +115,7 @@ class SalesAnalystTest < Minitest::Test
     earners.each do |earner|
       assert_instance_of Merchant, earner
     end
-    assert_equal 8, earners.first.id
+    assert_equal 1, earners.first.id
 
     earners = @sa.top_revenue_earners
 
