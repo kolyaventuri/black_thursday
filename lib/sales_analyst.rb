@@ -254,7 +254,6 @@ class SalesAnalyst
     pending_invoices = @sales_engine.invoices.invoices.select do |invoice|
       invoice.status == :pending
     end
-    binding.pry
     pending_invoices.map do |pending_invoice|
       @sales_engine.merchants.find_by_id pending_invoice.merchant_id
     end
