@@ -48,11 +48,11 @@ class Invoice
   # rubocop:enable PredicateName
 
   def total
-    return 0 unless is_paid_in_full?
+    return BigDecimal.new(0) unless is_paid_in_full?
     items = @invoice_repository.invoice_items @id
     total_sum = items.map do |item|
       item.unit_price * item.quantity
     end.reduce(:+)
-    total_sum || 0
+    total_sum || BigDecimal.new(0)
   end
 end

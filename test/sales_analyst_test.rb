@@ -99,12 +99,12 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_can_get_total_revenue_by_date
-    date = Time.parse '2009-12-09'
+    date = Time.parse '2012-11-23'
 
     expected = @sa.total_revenue_by_date(date)
 
     assert_instance_of BigDecimal, expected
-    assert_equal 7045.78, expected
+    assert_equal BigDecimal.new(528_913) / 100.0, expected
   end
 
   def test_it_can_get_top_revenue_earners

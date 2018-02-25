@@ -222,7 +222,7 @@ class SalesAnalyst
       @sales_engine.merchants.find_by_id merchant[:id]
     end
 
-    binding.pry
+
   end
 
   def sum_totals(totals)
