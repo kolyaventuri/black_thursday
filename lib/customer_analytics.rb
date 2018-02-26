@@ -52,5 +52,23 @@ module CustomerAnalytics
 
   def invoice_paid_in_full(invoices)
     invoices.select(&:is_paid_in_full?)
+
+  def customers_expenditure
+    @sales_engine.customers.all.map do |customer|
+      {
+        id: customer.id,
+        expenditure: customer.expenditure
+      }
+    end
+  end
+
+  def top_buyers(limit = 20)
+    sorted_customers = customers_expenditure.sort_by do |customer|
+      -customer[:expenditure]
+    end
+
+    sorted_customers[0...limit].map do |customer|
+      @sales_engine.customers.find_by_id customer[:id]
+    end
   end
 end
