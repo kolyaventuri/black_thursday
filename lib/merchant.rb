@@ -4,11 +4,13 @@
 class Merchant
   attr_reader :id,
               :name,
-              :merchant_repository
+              :merchant_repository,
+              :created_at
 
   def initialize(data, merchant_repository)
     @id = data[:id].to_i
     @name = data[:name]
+    @created_at = Time.parse data[:created_at]
     @merchant_repository = merchant_repository
   end
 
