@@ -273,6 +273,8 @@ class SalesAnalyst
     merchant = @sales_engine.merchants.find_by_id merchant_id
     invoices = merchant.invoices
 
+    invoices.select!(&:is_paid_in_full?)
+
     invoice_items = invoices.map do |invoice|
       @sales_engine.invoice_items.find_all_by_invoice_id invoice.id
     end.flatten
@@ -283,9 +285,10 @@ class SalesAnalyst
       invoice_item.quantity == invoice_items.first.quantity
     end
 
-    invoice_items.map do |invoice_item|
+    items = invoice_items.map do |invoice_item|
       @sales_engine.items.find_by_id invoice_item.item_id
     end
 
+    items
   end
 end

@@ -199,8 +199,7 @@ class SalesAnalystTest < Minitest::Test
     items = @sa.most_sold_item_for_merchant 1
 
     assert_instance_of Array, items
-    assert_equal 2, items.length
+    assert_equal 1, items.length
     assert_equal 2, items.first.id
-    assert_equal 3, items.last.id
   end
 end
