@@ -107,4 +107,13 @@ class MerchantTest < Minitest::Test
 
     assert_equal BigDecimal(407_487) / 100.0, sorted.first[:revenue]
   end
+
+  def test_invoices_paid_in_full
+    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 2
+    invoices = merchant.invoices_paid_in_full
+
+    assert_instance_of Array, invoices
+    assert_equal 2, invoices.first.id
+    assert_equal 3, invoices.last.id
+  end
 end
