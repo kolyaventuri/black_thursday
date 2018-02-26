@@ -127,9 +127,9 @@ class SalesAnalystTest < Minitest::Test
     merchants = @sa.merchants_with_pending_invoices
 
     assert_instance_of Array, merchants
-    assert_equal 2, merchants.length
+    assert_equal 7, merchants.length
     assert_instance_of Merchant, merchants[0]
-    assert_equal 'Candisart', merchants[0].name
+    assert_equal 'Shopin1901', merchants[0].name
   end
 
   def test_can_find_merchants_with_only_one_item
@@ -166,5 +166,27 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal 2, merchants.first.id
     assert_equal 9, merchants.last.id
+  end
+
+  def test_can_get_merchants_with_only_one_invoice_in_a_month
+    merchants = @sa.merchants_with_only_one_item_registered_in_month 'March'
+    assert_instance_of Array, merchants
+
+    assert_equal 2, merchants.length
+    merchants.each do |merchant|
+      assert_instance_of Merchant, merchant
+    end
+    assert_equal 4, merchants.first.id
+    assert_equal 6, merchants.last.id
+
+    merchants = @sa.merchants_with_only_one_item_registered_in_month 'November'
+    assert_instance_of Array, merchants
+
+    assert_equal 2, merchants.length
+    merchants.each do |merchant|
+      assert_instance_of Merchant, merchant
+    end
+    assert_equal 4, merchants.first.id
+    assert_equal 8, merchants.last.id
   end
 end
