@@ -212,7 +212,7 @@ class SalesAnalystTest < Minitest::Test
     buyers.each do |buyer|
       assert_instance_of Customer, buyer
     end
-    assert_equal ___, buyer.first.id
+    assert_equal 1, buyers.first.id
 
     buyers = @sa.top_buyers
 

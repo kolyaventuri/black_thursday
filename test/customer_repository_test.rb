@@ -107,6 +107,6 @@ class CustomerRepositoryTest < Minitest::Test
   end
 
   def test_can_get_customer_expenditure_by_id
-    assert_equal _____, @repo.expenditure 
+    assert_equal 0, @repo.expenditure(4)
   end
 end
