@@ -28,4 +28,8 @@ class Customer
   def fully_paid_invoices
     @customer_repository.invoices(@id).select(&:is_paid_in_full?)
   end
+
+  def unpaid_invoices
+    @customer_repository.invoices(@id).reject(&:is_paid_in_full?)
+  end
 end
