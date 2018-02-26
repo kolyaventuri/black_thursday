@@ -226,12 +226,6 @@ class SalesAnalyst
     end
   end
 
-  def sum_totals(totals)
-    totals.reduce(0) do |running_sum, invoice|
-      running_sum + invoice[:total]
-    end
-  end
-
   def merchants_with_pending_invoices
     @sales_engine.merchants.all.reject(&:pending_invoices?)
   end
@@ -273,7 +267,7 @@ class SalesAnalyst
     merchants = @sales_engine.merchants.all.select do |merchant|
       merchant.created_at.month == date.month
     end
-
+    binding.pry
     merchants.select do |merchant|
       merchant.invoices.select do |invoice|
         invoice.created_at.month == date.month
