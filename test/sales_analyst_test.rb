@@ -238,4 +238,10 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 6, buyers.first.id
     assert_equal 7, buyers.last.id
   end
+
+  def test_can_get_popular_one_time_buyer_item
+    item = @sa.one_time_buyers_item
+    assert_instance_of Item, item
+    assert_equal 2, item.id
+  end
 end
