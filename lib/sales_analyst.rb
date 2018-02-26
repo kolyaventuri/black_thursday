@@ -209,4 +209,12 @@ class SalesAnalyst
       @sales_engine.items.find_by_id invoice_item.item_id
     end
   end
+
+  def one_time_buyers
+    @sales_engine.customers.all.select do |customer|
+      @sales_engine.invoices.all.select do |invoice|
+        invoice.customer_id == customer.id
+      end.length == 1
+    end
+  end
 end
