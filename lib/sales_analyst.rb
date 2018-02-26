@@ -2,6 +2,7 @@
 
 require_relative 'standard_deviation'
 require_relative 'merchant_analytics'
+require_relative 'customer_analytics'
 
 # Uses the sales engine to perform calculations
 class SalesAnalyst
