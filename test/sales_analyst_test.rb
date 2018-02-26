@@ -240,11 +240,11 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_gives_array_of_items_bought_in_year
-    items = @sa.items_bought_in_year(2, '2014')
+    items = @sa.items_bought_in_year(1, '2009')
     assert_instance_of Array, items
     assert_instance_of Item, items[0]
-    assert_equal 3, items.length
-    assert_equal 1, items[0].id
-    assert_equal 4, items.last.id
+    assert_equal 12, items.length
+    assert_equal 1, items.first.id
+    assert_equal 2, items.last.id
   end
 end

@@ -74,16 +74,13 @@ module CustomerAnalytics
   end
 
   def items_bought_in_year(customer_id, year)
-    binding.pry
     date = Time.parse(year + '-01-01')
-    binding.pry
     invoices = @sales_engine.invoices.find_all_by_customer_id customer_id
     selected = invoices.select do |invoice|
       invoice.created_at.year.to_i == date.year
     end
-    binding.pry
     selected.map do |invoice|
       @sales_engine.invoices.find_items_by_invoice_id invoice.id
-    end
+    end.flatten
   end
 end
