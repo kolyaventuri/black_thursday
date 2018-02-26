@@ -165,7 +165,7 @@ class SalesAnalystTest < Minitest::Test
     end
 
     assert_equal 2, merchants.first.id
-    assert_equal 9, merchants.last.id
+    assert_equal 3, merchants.last.id
   end
 
   def test_can_get_merchants_with_only_one_invoice_in_a_month
@@ -193,14 +193,13 @@ class SalesAnalystTest < Minitest::Test
 
     assert_instance_of Array, items
     assert_equal 1, items.length
-    assert_equal 2, items.first.id
+    assert_equal 12, items.first.id
 
 
-    items = @sa.most_sold_item_for_merchant 4
+    items = @sa.most_sold_item_for_merchant 5
 
     assert_instance_of Array, items
-    assert_equal 2, items.length
-    assert_equal 6, items.first.id
-    assert_equal 7, items.last.id
+    assert_equal 1, items.length
+    assert_equal 1, items.first.id
   end
 end
