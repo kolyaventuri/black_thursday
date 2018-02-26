@@ -36,22 +36,27 @@ class Invoice
     @invoice_repository.transactions @id
   end
 
+  def itemize
+    @invoice_repository.invoice_items @id
+  end
+
   # rubocop:disable PredicateName
   def is_paid_in_full?
     return false if transactions.empty?
-    failed = transactions.select do |transaction|
-      transaction.result == 'failed'
+    success = transactions.select do |transaction|
+      transaction.result == 'success'
     end
-    return false unless failed.empty?
+    return false if success.empty?
     true
   end
   # rubocop:enable PredicateName
 
   def total
+    return BigDecimal.new(0) unless is_paid_in_full?
     items = @invoice_repository.invoice_items @id
-    total = items.map do |item|
+    total_sum = items.map do |item|
       item.unit_price * item.quantity
     end.reduce(:+)
-    total
+    total_sum || BigDecimal.new(0)
   end
 end

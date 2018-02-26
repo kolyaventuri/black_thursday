@@ -54,14 +54,8 @@ class InvoiceTest < Minitest::Test
     assert_equal 'Parker', customer.first_name
   end
 
-  def test_can_get_total_amount
-    assert_equal BigDecimal.new(704_578) / 100.0, @invoice.total
-  end
-
   # rubocop:disable MethodLength
-  def test_can_check_if_paid_in_full
-    assert_equal false, @invoice.is_paid_in_full?
-
+  def test_can_get_total_amount
     invoice = Invoice.new(
       {
         id: 2,
@@ -73,8 +67,25 @@ class InvoiceTest < Minitest::Test
       },
       MOCK_INVOICE_REPOSITORY
     )
+    assert_equal BigDecimal.new(528_913) / 100.0, invoice.total
+  end
 
-    assert_equal true, invoice.is_paid_in_full?
+  def test_can_check_if_paid_in_full
+    assert_equal true, @invoice.is_paid_in_full?
+
+    invoice = Invoice.new(
+      {
+        id: 5,
+        customer_id: 7,
+        merchant_id: 8,
+        status: 'pending',
+        created_at: '2016-01-11 17:42:32 UTC',
+        updated_at: '2016-01-11 17:42:32 UTC'
+      },
+      MOCK_INVOICE_REPOSITORY
+    )
+
+    assert_equal false, invoice.is_paid_in_full?
   end
   # rubocop:enable MethodLength
 
@@ -90,5 +101,15 @@ class InvoiceTest < Minitest::Test
     end
 
     assert_equal '4279380734327937'.to_i, transactions.first.credit_card_number
+  end
+
+  def test_can_get_list_of_items
+    items = @invoice.itemize
+    assert_instance_of Array, items
+
+    assert_equal 3, items.length
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+    end
   end
 end

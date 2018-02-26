@@ -63,4 +63,8 @@ class MerchantRepository
       @sales_engine.customers.find_by_id customer_id
     end
   end
+
+  def revenue(id)
+    invoices(id).map(&:total).reduce(:+) || 0
+  end
 end

@@ -29,6 +29,7 @@ class MerchantRepositoryTest < Minitest::Test
       assert_instance_of Merchant, merchant
     end
     assert_equal 'Shopin1901', merchant_repo.all.first.name
+    assert_equal Time.parse('2010-12-10'), merchant_repo.all.first.created_at
   end
 
   def test_it_can_find_merchant_by_id
@@ -121,5 +122,12 @@ class MerchantRepositoryTest < Minitest::Test
     customers.each do |customer|
       assert_instance_of Customer, customer
     end
+  end
+
+  def test_can_get_merchant_revenue_by_id
+    mr = MerchantRepository.new './test/fixtures/merchants.csv',
+                                MOCK_SALES_ENGINE
+
+    assert_equal (BigDecimal(1_233_491) / 100.0), mr.revenue(2)
   end
 end
