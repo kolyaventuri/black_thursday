@@ -52,6 +52,7 @@ module CustomerAnalytics
 
   def invoice_paid_in_full(invoices)
     invoices.select(&:is_paid_in_full?)
+  end
 
   def customers_expenditure
     @sales_engine.customers.all.map do |customer|
