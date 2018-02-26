@@ -259,8 +259,9 @@ class SalesAnalystTest < Minitest::Test
   def test_can_get_customers_with_unpaid_invoices
     customers = @sa.customers_with_unpaid_invoices
     assert_instance_of Array, customers
-    assert_equal 1, customers.length
+    assert_equal 5, customers.length
 
-    assert_equal 9, customers.first.id
+    assert_equal 1, customers.first.id
+    assert_equal 9, customers.last.id
   end
 end
