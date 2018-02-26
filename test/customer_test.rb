@@ -43,4 +43,8 @@ class CustomerTest < Minitest::Test
       assert_instance_of Merchant, merchant
     end
   end
+
+  def test_can_generate_customer_expenditure
+    assert_equal _____, @customer.expenditure
+  end
 end

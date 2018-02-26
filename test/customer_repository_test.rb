@@ -105,4 +105,8 @@ class CustomerRepositoryTest < Minitest::Test
       assert_instance_of Merchant, merchant
     end
   end
+
+  def test_can_get_customer_expenditure_by_id
+    assert_equal _____, @repo.expenditure
+  end
 end

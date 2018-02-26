@@ -20,4 +20,8 @@ class Customer
   def merchants
     @customer_repository.merchants @id
   end
+
+  def expenditure
+    @customer_repository.expenditure @id
+  end
 end

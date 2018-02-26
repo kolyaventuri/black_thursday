@@ -203,4 +203,20 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 1, items.length
     assert_equal 2, items.first.id
   end
+
+  def test_it_can_get_top_buyers
+    buyers = @sa.top_buyers 3
+    assert_instance_of Array, buyers
+    assert_equal 3, buyers.length
+
+    buyers.each do |buyer|
+      assert_instance_of Customer, buyer
+    end
+    assert_equal ___, buyer.first.id
+
+    buyers = @sa.top_buyers
+
+    assert_instance_of Array, buyers
+    assert_equal 15, buyers.length
+  end
 end
