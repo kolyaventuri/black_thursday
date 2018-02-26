@@ -225,4 +225,15 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Merchant, merchant
     assert_equal 1, merchant.id
   end
+
+  def test_can_get_one_time_buyers
+    buyers = @sa.one_time_buyers
+    assert_instance_of Array, buyers
+
+    buyers.each do |buyer|
+      assert_instance_of Customer, buyer
+    end
+
+    assert_equal 8, buyers.first.id
+  end
 end
