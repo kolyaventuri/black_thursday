@@ -186,6 +186,6 @@ class SalesAnalystTest < Minitest::Test
     merchants.each do |merchant|
       assert_instance_of Merchant, merchant
     end
-    assert_equal 8, merchants.first.id
+    assert_equal 1, merchants.first.id
   end
 end
