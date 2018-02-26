@@ -140,4 +140,31 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 3, merchants.length
     assert_equal 'Candisart', merchants[1].name
   end
+
+  def test_can_get_revenue_by_merchant
+    revenue = @sa.revenue_by_merchant 2
+
+    assert_equal BigDecimal(1_233_491) / 100.0, revenue
+  end
+
+  def test_can_get_merchants_best_item
+    item = @sa.best_item_for_merchant 2
+
+    assert_instance_of Item, item
+    assert_equal 1, item.id
+  end
+
+  def test_can_rank_merchants_by_revenue
+    merchants = @sa.merchants_ranked_by_revenue
+
+    assert_instance_of Array, merchants
+    assert_equal 9, merchants.length
+
+    merchants.each do |merchant|
+      assert_instance_of Merchant, merchant
+    end
+
+    assert_equal 2, merchants.first.id
+    assert_equal 9, merchants.last.id
+  end
 end

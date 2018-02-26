@@ -102,4 +102,14 @@ class InvoiceTest < Minitest::Test
 
     assert_equal '4279380734327937'.to_i, transactions.first.credit_card_number
   end
+
+  def test_can_get_list_of_items
+    items = @invoice.itemize
+    assert_instance_of Array, items
+
+    assert_equal 3, items.length
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+    end
+  end
 end
