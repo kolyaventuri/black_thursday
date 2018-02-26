@@ -92,14 +92,12 @@ module CustomerAnalytics
   end
 
   def itemize_invoices(invoices)
-    invoices.map do |invoice|
-      invoice.itemize
-    end.flatten
+    invoices.map(&:itemize).flatten
   end
 
   def invoice_item_quantity_totals(grouped)
     grouped.map do |item_id, invoice_items|
-      [item_id, invoice_items.reduce(0) {|sum, item| sum + item.quantity}]
+      [item_id, invoice_items.reduce(0) { |sum, item| sum + item.quantity }]
     end.to_h
   end
 end
