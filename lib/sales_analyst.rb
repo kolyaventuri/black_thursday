@@ -231,9 +231,7 @@ class SalesAnalyst
 
   def merchants_with_pending_invoices
     @sales_engine.merchants.all.reject do |merchant|
-      merchant.invoices.select do |invoice|
-        invoice.status == :pending || invoice.all_failed?
-      end.empty?
+      merchant.pending_invoices?
     end
   end
 

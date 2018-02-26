@@ -64,4 +64,12 @@ class MerchantTest < Minitest::Test
 
     assert_equal BigDecimal(1_233_491) / 100.0, merchant.revenue
   end
+
+  def test_can_check_for_pending_invoices
+    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 2
+    assert_equal true, merchant.pending_invoices?
+
+    merchant = MOCK_SALES_ENGINE.merchants.find_by_id 3
+    assert_equal false, merchant.pending_invoices?
+  end
 end

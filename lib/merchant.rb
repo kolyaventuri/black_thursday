@@ -27,4 +27,10 @@ class Merchant
   def revenue
     @merchant_repository.revenue @id
   end
+
+  def pending_invoices?
+    invoices.reject do |invoice|
+      invoice.is_paid_in_full?
+    end.empty?
+  end
 end
