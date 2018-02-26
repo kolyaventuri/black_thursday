@@ -29,6 +29,7 @@ class MerchantRepositoryTest < Minitest::Test
       assert_instance_of Merchant, merchant
     end
     assert_equal 'Shopin1901', merchant_repo.all.first.name
+    assert_equal Time.parse('2010-12-10'), merchant_repo.all.first.created_at
   end
 
   def test_it_can_find_merchant_by_id
