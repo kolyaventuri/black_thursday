@@ -27,11 +27,11 @@ class Merchant
   def revenue
     @merchant_repository.revenue @id
   end
-  
+
   def pending_invoices?
     invoices.reject(&:is_paid_in_full?).empty?
-  end 
-  
+  end
+
   def revenue_by_item
     itemized = invoices.select(&:is_paid_in_full?).map(&:itemize).flatten
     per_item = per_item_revenues(itemized)
