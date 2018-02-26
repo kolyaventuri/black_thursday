@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Defines methods for CustomerAnalytics
 module CustomerAnalytics
   def top_merchant_for_customer(id)
