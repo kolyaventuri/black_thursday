@@ -101,12 +101,12 @@ module CustomerAnalytics
       [item_id, invoice_items.reduce(0) { |sum, item| sum + item.quantity }]
     end.to_h
   end
-  
+
   def items_bought_in_year(customer_id, year)
-    date = Time.parse(year + '-01-01')
+    date = Time.parse("#{year}-01-01")
     invoices = @sales_engine.invoices.find_all_by_customer_id customer_id
     selected = invoices.select do |invoice|
-      invoice.created_at.year.to_i == date.year
+      invoice.created_at.year == date.year
     end
     selected.map do |invoice|
       @sales_engine.invoices.find_items_by_invoice_id invoice.id
