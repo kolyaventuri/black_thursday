@@ -187,4 +187,20 @@ class SalesAnalystTest < Minitest::Test
     end
     assert_equal 1, merchants.first.id
   end
+
+  def test_can_get_most_sold_item_for_merchant
+    items = @sa.most_sold_item_for_merchant 2
+
+    assert_instance_of Array, items
+    assert_equal 1, items.length
+    assert_equal 2, items.first.id
+
+
+    items = @sa.most_sold_item_for_merchant 4
+
+    assert_instance_of Array, items
+    assert_equal 2, items.length
+    assert_equal 6, items.first.id
+    assert_equal 7, items.last.id
+  end
 end
