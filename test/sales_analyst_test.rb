@@ -239,6 +239,14 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 7, buyers.last.id
   end
 
+  def test_can_get_popular_one_time_buyer_item
+    items = @sa.one_time_buyers_top_items
+    assert_instance_of Array, items
+    assert_equal 1, items.length
+
+    assert_equal 2, items.first.id
+  end
+  
   def test_gives_array_of_items_bought_in_year
     items = @sa.items_bought_in_year(2, '2014')
     assert_instance_of Array, items
