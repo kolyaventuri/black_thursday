@@ -72,4 +72,23 @@ class CustomerTest < Minitest::Test
     assert_equal 6, invoices.first.id
   end
   # rubocop:enable MethodLength
+
+  def test_can_get_unpaid_invoices
+    customer = Customer.new(
+      {
+        id: 9,
+        first_name: 'Joan',
+        last_name: 'Clarke',
+        created_at: '2012-03-27 14:54:09 UTC',
+        updated_at: '2012-03-27 14:54:09 UTC'
+      },
+      MOCK_CUSTOMER_REPOSITORY
+    )
+
+    invoices = customer.unpaid_invoices
+    assert_instance_of Array, invoices
+
+    assert_equal 1, invoices.length
+    assert_equal 14, invoices.first.id
+  end
 end
