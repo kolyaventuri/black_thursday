@@ -168,6 +168,7 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 3, merchants.last.id
   end
 
+  # rubocop:disable MethodLength, AbcSize
   def test_can_get_merchants_with_only_one_invoice_in_a_month
     merchants = @sa.merchants_with_only_one_item_registered_in_month 'March'
     assert_instance_of Array, merchants
@@ -187,6 +188,7 @@ class SalesAnalystTest < Minitest::Test
     end
     assert_equal 1, merchants.first.id
   end
+  # rubocop:enable MethodLength, AbcSize
 
   def test_can_get_most_sold_item_for_merchant
     items = @sa.most_sold_item_for_merchant 2
@@ -194,7 +196,6 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Array, items
     assert_equal 1, items.length
     assert_equal 2, items.first.id
-
 
     items = @sa.most_sold_item_for_merchant 1
 
