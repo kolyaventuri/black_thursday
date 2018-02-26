@@ -51,7 +51,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_can_get_average_price_for_all_merchants
-    assert_equal Rational(115.0 / 9.0).to_f.round(2),
+    assert_equal Rational(135.0 / 9.0).to_f.round(2),
                  @sa.average_average_price_per_merchant
   end
 
@@ -61,7 +61,7 @@ class SalesAnalystTest < Minitest::Test
   end
 
   def test_it_can_standard_deviate_average_items_per_merchant
-    assert_equal (Math.sqrt(10) / 3).round(2),
+    assert_equal 0.78,
                  @sa.average_items_per_merchant_standard_deviation
   end
 
@@ -137,7 +137,7 @@ class SalesAnalystTest < Minitest::Test
 
     assert_instance_of Array, merchants
     assert_instance_of Merchant, merchants[0]
-    assert_equal 3, merchants.length
+    assert_equal 4, merchants.length
     assert_equal 'Candisart', merchants[1].name
   end
 

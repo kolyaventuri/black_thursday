@@ -269,8 +269,8 @@ class SalesAnalyst
     end
 
     merchants.select do |merchant|
-      merchant.invoices.select do |invoice|
-        invoice.created_at.month == date.month
+      merchant.items.select do |item|
+        item.created_at.month == date.month
       end.length == 1
     end
   end
