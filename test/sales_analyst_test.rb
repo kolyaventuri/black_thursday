@@ -172,12 +172,11 @@ class SalesAnalystTest < Minitest::Test
     merchants = @sa.merchants_with_only_one_item_registered_in_month 'March'
     assert_instance_of Array, merchants
 
-    assert_equal 2, merchants.length
+    assert_equal 1, merchants.length
     merchants.each do |merchant|
       assert_instance_of Merchant, merchant
     end
-    assert_equal 3, merchants.first.id
-    assert_equal 6, merchants.last.id
+    assert_equal 6, merchants.first.id
 
     merchants = @sa.merchants_with_only_one_item_registered_in_month 'December'
     assert_instance_of Array, merchants

@@ -264,14 +264,8 @@ class SalesAnalyst
 
   def merchants_with_only_one_item_registered_in_month(month)
     date = Time.parse month
-    merchants = @sales_engine.merchants.all.select do |merchant|
+    merchants_with_only_one_item.select do |merchant|
       merchant.created_at.month == date.month
-    end
-
-    merchants.select do |merchant|
-      merchant.items.select do |item|
-        item.created_at.month == date.month
-      end.length == 1
     end
   end
 end
