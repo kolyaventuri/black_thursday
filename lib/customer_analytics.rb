@@ -72,4 +72,27 @@ module CustomerAnalytics
       @sales_engine.customers.find_by_id customer[:id]
     end
   end
+
+  def one_time_buyers_top_items
+    buyers = one_time_buyers
+
+    invoices = buyers.map do |buyer|
+      @sales_engine.invoices.find_all_by_customer_id buyer.id
+    end.flatten.select(&:is_paid_in_full?)
+
+    invoice_items = invoices.map do |invoice|
+      invoice.itemize
+    end.flatten
+
+    grouped = invoice_items.group_by(&:item_id)
+
+    totals = grouped.map do |item_id, invoice_items|
+      [item_id, invoice_items.reduce(0) {|sum, item| sum + item.quantity}]
+    end.to_h
+
+    max = totals.max_by {|_id, quantity| quantity }
+
+    [@sales_engine.items.find_by_id(max[0])]
+
+  end
 end
