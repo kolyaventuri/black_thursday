@@ -67,7 +67,7 @@ class Merchant
         revenue: total
       }
     end
-  endd
+  end
 
   def invoices_paid_in_full
     invoices.select(&:is_paid_in_full?)
