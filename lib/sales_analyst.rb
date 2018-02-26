@@ -267,4 +267,13 @@ class SalesAnalyst
       -merchant.revenue
     end
   end
+
+  def merchants_with_only_one_item_registered_in_month(month)
+    date = Time.parse month
+    @sales_engine.merchants.all.select do |merchant|
+      merchant.invoices.select do |invoice|
+        invoice.created_at.month == date.month
+      end.length == 1
+    end
+  end
 end
