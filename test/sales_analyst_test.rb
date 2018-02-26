@@ -127,7 +127,7 @@ class SalesAnalystTest < Minitest::Test
     merchants = @sa.merchants_with_pending_invoices
 
     assert_instance_of Array, merchants
-    assert_equal 7, merchants.length
+    assert_equal 6, merchants.length
     assert_instance_of Merchant, merchants[0]
     assert_equal 'Shopin1901', merchants[0].name
   end
@@ -229,7 +229,7 @@ class SalesAnalystTest < Minitest::Test
   def test_can_get_one_time_buyers
     buyers = @sa.one_time_buyers
     assert_instance_of Array, buyers
-    assert_equal 3, buyers.length
+    assert_equal 2, buyers.length
 
     buyers.each do |buyer|
       assert_instance_of Customer, buyer

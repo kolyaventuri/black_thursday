@@ -48,6 +48,7 @@ class CustomerTest < Minitest::Test
     assert_equal _____, @customer.expenditure
   end
 
+  # rubocop:disable MethodLength
   def test_can_get_fully_paid_invoices
     customer = Customer.new(
       {
@@ -70,4 +71,5 @@ class CustomerTest < Minitest::Test
 
     assert_equal 6, invoices.first.id
   end
+  # rubocop:enable MethodLength
 end
