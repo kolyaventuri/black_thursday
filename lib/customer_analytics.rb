@@ -83,7 +83,7 @@ module CustomerAnalytics
     end
     binding.pry
     selected.map do |invoice|
-      @sales_engine.items.find_all_by_invoice_id invoice.id
+      @sales_engine.invoices.find_items_by_invoice_id invoice.id
     end
   end
 end
