@@ -49,7 +49,18 @@ class CustomerTest < Minitest::Test
   end
 
   def test_can_get_fully_paid_invoices
-    invoices = @customer.fully_paid_invoices
+    customer = Customer.new(
+      {
+        id: 4,
+        first_name: 'Joan',
+        last_name: 'Clarke',
+        created_at: '2012-03-27 14:54:09 UTC',
+        updated_at: '2012-03-27 14:54:09 UTC'
+      },
+      MOCK_CUSTOMER_REPOSITORY
+    )
+
+    invoices = customer.fully_paid_invoices
     assert_instance_of Array, invoices
     assert_equal 2, invoices.length
 
@@ -57,6 +68,6 @@ class CustomerTest < Minitest::Test
       assert_instance_of Invoice, invoice
     end
 
-    assert_equal 6, invoice.first.id
+    assert_equal 6, invoices.first.id
   end
 end
