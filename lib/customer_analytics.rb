@@ -1,3 +1,3 @@
-class CustomerAnalytics
+module CustomerAnalytics
 
 end
