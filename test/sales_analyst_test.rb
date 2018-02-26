@@ -236,6 +236,6 @@ class SalesAnalystTest < Minitest::Test
     end
 
     assert_equal 7, buyers.first.id
-    assert_equal 9, buyers.last.id
+    assert_equal 8, buyers.last.id
   end
 end

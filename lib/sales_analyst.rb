@@ -211,10 +211,19 @@ class SalesAnalyst
   end
 
   def one_time_buyers
-    @sales_engine.customers.all.select do |customer|
-      @sales_engine.invoices.all.select do |invoice|
-        invoice.customer_id == customer.id
-      end.length == 1
+    grouped = @sales_engine.invoices.all.group_by(&:customer_id)
+    one_transaction = grouped.map do |customer_id, invoices|
+      [customer_id, invoices.select do |invoice|
+        invoice.is_paid_in_full?
+      end.length == 1]
+    end
+
+    solos = one_transaction.select do |transaction|
+      transaction[1] == true
+    end.to_h.keys
+
+    solos.map do |customer_id|
+      @sales_engine.customers.find_by_id customer_id
     end
   end
 end
