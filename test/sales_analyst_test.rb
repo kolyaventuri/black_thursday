@@ -196,10 +196,11 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 12, items.first.id
 
 
-    items = @sa.most_sold_item_for_merchant 5
+    items = @sa.most_sold_item_for_merchant 1
 
     assert_instance_of Array, items
-    assert_equal 1, items.length
-    assert_equal 1, items.first.id
+    assert_equal 2, items.length
+    assert_equal 9, items.first.id
+    assert_equal 9, items.last.id
   end
 end
