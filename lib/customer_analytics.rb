@@ -74,25 +74,32 @@ module CustomerAnalytics
   end
 
   def one_time_buyers_top_items
-    buyers = one_time_buyers
-
-    invoices = buyers.map do |buyer|
-      @sales_engine.invoices.find_all_by_customer_id buyer.id
-    end.flatten.select(&:is_paid_in_full?)
-
-    invoice_items = invoices.map do |invoice|
-      invoice.itemize
-    end.flatten
-
+    invoices = buyer_invoices_paid_in_full one_time_buyers
+    invoice_items = itemize_invoices invoices
     grouped = invoice_items.group_by(&:item_id)
 
-    totals = grouped.map do |item_id, invoice_items|
-      [item_id, invoice_items.reduce(0) {|sum, item| sum + item.quantity}]
-    end.to_h
+    totals = invoice_item_quantity_totals grouped
 
-    max = totals.max_by {|_id, quantity| quantity }
+    max = totals.max_by { |_id, quantity| quantity }
 
     [@sales_engine.items.find_by_id(max[0])]
+  end
 
+  def buyer_invoices_paid_in_full(buyers)
+    buyers.map do |buyer|
+      @sales_engine.invoices.find_all_by_customer_id buyer.id
+    end.flatten.select(&:is_paid_in_full?)
+  end
+
+  def itemize_invoices(invoices)
+    invoices.map do |invoice|
+      invoice.itemize
+    end.flatten
+  end
+
+  def invoice_item_quantity_totals(grouped)
+    grouped.map do |item_id, invoice_items|
+      [item_id, invoice_items.reduce(0) {|sum, item| sum + item.quantity}]
+    end.to_h
   end
 end
