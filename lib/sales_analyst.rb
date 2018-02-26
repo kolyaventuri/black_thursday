@@ -230,9 +230,7 @@ class SalesAnalyst
   end
 
   def merchants_with_pending_invoices
-    @sales_engine.merchants.all.reject do |merchant|
-      merchant.pending_invoices?
-    end
+    @sales_engine.merchants.all.reject(&:pending_invoices?)
   end
 
   def merchants_with_only_one_item
