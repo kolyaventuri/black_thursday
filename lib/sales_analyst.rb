@@ -230,12 +230,10 @@ class SalesAnalyst
   end
 
   def merchants_with_pending_invoices
-    pending_invoices = @sales_engine.invoices.all.select do |invoice|
-      invoice.status == :pending
-    end.uniq(&:merchant_id)
-
-    pending_invoices.map do |pending_invoice|
-      @sales_engine.merchants.find_by_id pending_invoice.merchant_id
+    @sales_engine.merchants.all.reject do |merchant|
+      merchant.invoices.select do |invoice|
+        invoice.status == :pending || invoice.all_failed?
+      end.empty?
     end
   end
 

@@ -47,6 +47,13 @@ class Invoice
   end
   # rubocop:enable PredicateName
 
+  def all_failed?
+    transactions.each do |transaction|
+      return false unless transaction.result == 'failed'
+    end
+    true
+  end
+
   def total
     return BigDecimal.new(0) unless is_paid_in_full?
     items = @invoice_repository.invoice_items @id
