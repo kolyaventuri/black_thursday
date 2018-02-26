@@ -267,7 +267,7 @@ class SalesAnalyst
     merchants = @sales_engine.merchants.all.select do |merchant|
       merchant.created_at.month == date.month
     end
-    binding.pry
+
     merchants.select do |merchant|
       merchant.invoices.select do |invoice|
         invoice.created_at.month == date.month
