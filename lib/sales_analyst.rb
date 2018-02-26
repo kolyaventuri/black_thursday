@@ -209,4 +209,10 @@ class SalesAnalyst
       @sales_engine.items.find_by_id invoice_item.item_id
     end
   end
+
+  def customers_with_unpaid_invoices
+    @sales_engine.customers.all.reject do |customer|
+      customer.unpaid_invoices.empty?
+    end
+  end
 end
