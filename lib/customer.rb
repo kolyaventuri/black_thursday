@@ -24,4 +24,8 @@ class Customer
   def expenditure
     @customer_repository.expenditure @id
   end
+
+  def fully_paid_invoices
+    @customer_repository.invoices(@id).select(&:is_paid_in_full?)
+  end
 end

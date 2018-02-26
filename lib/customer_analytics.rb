@@ -27,6 +27,32 @@ module CustomerAnalytics
     end
   end
 
+  def one_time_buyers
+    invoices = @sales_engine.invoices.all.group_by(&:customer_id)
+    customers = customers_with_one_transaciton invoices
+
+    solos = single_transaction_customer_ids customers
+
+    solos.map do |customer_id|
+      @sales_engine.customers.find_by_id customer_id
+    end
+  end
+
+  def single_transaction_customer_ids(customers)
+    customers.select do |transaction|
+      transaction[1] == true
+    end.to_h.keys
+  end
+
+  def customers_with_one_transaciton(customers)
+    customers.map do |customer_id, invoices|
+      [customer_id, invoice_paid_in_full(invoices).length == 1]
+    end
+  end
+
+  def invoice_paid_in_full(invoices)
+    invoices.select(&:is_paid_in_full?)
+
   def customers_expenditure
     @sales_engine.customers.all.map do |customer|
       {
