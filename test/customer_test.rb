@@ -47,4 +47,16 @@ class CustomerTest < Minitest::Test
   def test_can_generate_customer_expenditure
     assert_equal _____, @customer.expenditure
   end
+
+  def test_can_get_fully_paid_invoices
+    invoices = @customer.fully_paid_invoices
+    assert_instance_of Array, invoices
+    assert_equal 2, invoices.length
+
+    invoices.each do |invoice|
+      assert_instance_of Invoice, invoice
+    end
+
+    assert_equal 6, invoice.first.id
+  end
 end
