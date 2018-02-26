@@ -45,6 +45,6 @@ class CustomerTest < Minitest::Test
   end
 
   def test_can_generate_customer_expenditure
-    assert_equal 10, @customer.expenditure
+    assert_equal 0.528913e4, @customer.expenditure
   end
 end
