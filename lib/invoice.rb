@@ -59,4 +59,8 @@ class Invoice
     end.reduce(:+)
     total_sum || BigDecimal.new(0)
   end
+
+  def quantify_items
+
+  end
 end
