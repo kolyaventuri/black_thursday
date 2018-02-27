@@ -61,6 +61,7 @@ class Invoice
   end
 
   def quantify_items
-
+    items = @invoice_repository.invoice_items @id
+    items.map(&:quantity).reduce(:+)
   end
 end

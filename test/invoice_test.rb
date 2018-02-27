@@ -115,5 +115,6 @@ class InvoiceTest < Minitest::Test
 
   def test_can_quantify_items_on_invoice
     items = @invoice.quantify_items
+    assert_equal 16, items
   end
 end
