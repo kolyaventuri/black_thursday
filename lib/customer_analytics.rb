@@ -120,9 +120,7 @@ module CustomerAnalytics
   end
 
   def best_invoice_by_quantity
-    best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
-      invoice.quantify_items
-    end
-    best_invoices.first
+    best_invoices = @sales_engine.invoices.all.sort_by(&:quantify_items)
+    best_invoices.last
   end
 end
