@@ -143,7 +143,7 @@ module CustomerAnalytics
 
   def get_max_item(quantities, highest_value)
     quantities.select do |_id, quantity|
-      quantity == max[1]
+      quantity == highest_value
     end
   end
 end
