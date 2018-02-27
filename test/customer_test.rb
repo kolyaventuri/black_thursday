@@ -91,4 +91,25 @@ class CustomerTest < Minitest::Test
     assert_equal 1, invoices.length
     assert_equal 14, invoices.first.id
   end
+
+  def test_can_get_all_invoices
+    customer = Customer.new(
+      {
+        id: 2,
+        first_name: 'Joan',
+        last_name: 'Clarke',
+        created_at: '2012-03-27 14:54:09 UTC',
+        updated_at: '2012-03-27 14:54:09 UTC'
+      },
+      MOCK_CUSTOMER_REPOSITORY
+    )
+
+    invoices = customer.invoices
+    assert_instance_of Array, invoices
+    assert_equal 6, invoices.length
+
+    invoices.each do |invoice|
+      assert_instance_of Invoice, invoice
+    end
+  end
 end
