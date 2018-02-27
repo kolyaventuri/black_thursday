@@ -34,6 +34,6 @@ class Customer
   end
 
   def invoices
-    @customer_repository.invoices @i
+    @customer_repository.invoices @id
   end
 end
