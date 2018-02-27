@@ -246,7 +246,7 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal 2, items.first.id
   end
-  
+
   def test_gives_array_of_items_bought_in_year
     items = @sa.items_bought_in_year(1, '2009')
     assert_instance_of Array, items
@@ -254,5 +254,11 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 12, items.length
     assert_equal 1, items.first.id
     assert_equal 2, items.last.id
+  end
+
+  def test_best_invoice_by_revenue
+    best_invoice = @sa.best_invoice_by_revenue
+    assert_instance_of Invoice, best_invoice
+    assert_equal ____, best_invoice.total
   end
 end

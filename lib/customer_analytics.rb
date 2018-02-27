@@ -73,7 +73,6 @@ module CustomerAnalytics
     end
   end
 
-
   def one_time_buyers_top_items
     invoices = buyer_invoices_paid_in_full one_time_buyers
     invoice_items = itemize_invoices invoices
@@ -112,4 +111,6 @@ module CustomerAnalytics
       @sales_engine.invoices.find_items_by_invoice_id invoice.id
     end.flatten
   end
+
+  
 end
