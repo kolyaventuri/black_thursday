@@ -127,15 +127,23 @@ module CustomerAnalytics
     grouped = invoice_items.group_by(&:item_id)
 
     quantities = invoice_item_quantity_totals grouped
-  
-    max = quantities.max_by { |_id, value| value }
 
-    max_items = quantities.select do |_id, quantity|
-      quantity == max[1]
-    end
+    max = get_highest_value(quantities)
 
-    items = max_items.map do |item_id, _quantity|
+    max_items = get_max_item(quantities, max)
+
+    max_items.map do |item_id, _quantity|
       @sales_engine.items.find_by_id item_id
+    end
+  end
+
+  def get_highest_value(quantities)
+    quantities.max_by { |_id, value| value }
+  end
+
+  def get_max_item(quantities, highest_value)
+    quantities.select do |_id, quantity|
+      quantity == max[1]
     end
   end
 end
