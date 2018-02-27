@@ -264,4 +264,12 @@ class SalesAnalystTest < Minitest::Test
     assert_equal 1, customers.first.id
     assert_equal 9, customers.last.id
   end
+
+  def test_can_get_highest_volume_items
+    items = @sa.highest_volume_items 1
+    assert_instance_of Array, items
+    assert_equal 1, items.length
+
+    assert_equal 1, items.first.id
+  end
 end
