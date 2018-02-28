@@ -123,6 +123,6 @@ module CustomerAnalytics
     best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
       -invoice.quantify_items
     end
-    best_invoices.first
+    best_invoices[1]
   end
 end
