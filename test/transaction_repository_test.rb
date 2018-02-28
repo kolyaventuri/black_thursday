@@ -58,7 +58,7 @@ class TransactionRepositoryTest < Minitest::Test
     assert_instance_of Transaction, result[0]
     assert_instance_of Transaction, result[1]
     assert_equal 2747, result[0].invoice_id
-    assert_equal 3560, result[1].invoice_id
+    assert_equal 14, result[1].invoice_id
   end
 
   def test_empty_credit_card_array_returns_when_no_match
@@ -74,8 +74,8 @@ class TransactionRepositoryTest < Minitest::Test
     assert_instance_of Array, result
     assert_instance_of Transaction, result[0]
     assert_instance_of Transaction, result[1]
-    assert_equal 1752, result[0].invoice_id
-    assert_equal 3560, result[1].invoice_id
+    assert_equal 14, result[0].invoice_id
+    assert_equal 14, result[1].invoice_id
   end
 
   def test_empty_credit_result_array_returns_when_no_match

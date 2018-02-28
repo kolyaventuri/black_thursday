@@ -112,6 +112,40 @@ module CustomerAnalytics
     end.flatten
   end
 
+  def customers_with_unpaid_invoices
+    @sales_engine.customers.all.reject do |customer|
+      customer.unpaid_invoices.empty?
+    end
+  end
+
+  def highest_volume_items(id)
+    customer = @sales_engine.customers.find_by_id id
+
+    invoices = customer.invoices
+    invoice_items = itemize_invoices invoices.flatten
+    grouped = invoice_items.group_by(&:item_id)
+
+    quantities = invoice_item_quantity_totals grouped
+
+    max = get_highest_value(quantities)
+
+    max_items = get_max_item(quantities, max)
+
+    max_items.map do |item_id, _quantity|
+      @sales_engine.items.find_by_id item_id
+    end
+  end
+
+  def get_highest_value(quantities)
+    quantities.max_by { |_id, value| value }.last
+  end
+
+  def get_max_item(quantities, highest_value)
+    quantities.select do |_id, quantity|
+      quantity == highest_value
+    end
+  end
+
   def best_invoice_by_revenue
     best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
       -invoice.total
