@@ -24,11 +24,6 @@ class Item
     @item_repository = item_repository
   end
 
-  def ids(data)
-    @id = data[:id].to_i
-    @merchant_id = data[:merchant_id].to_i
-  end
-
   def item_info(data)
     @name = data[:name]
     @description = data[:description]
