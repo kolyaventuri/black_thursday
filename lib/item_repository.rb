@@ -14,12 +14,8 @@ class ItemRepository
   end
 
   def load_csv(filename)
-    CSV.foreach(
-      filename,
-      headers: true,
-      header_converters: :symbol
-    ) do |item_info|
-      item = Item.new item_info, self
+    CSV.foreach(filename, headers: true, header_converters: :symbol) do |info|
+      item = Item.new info, self
       @items.push item
     end
   end
