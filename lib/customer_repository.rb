@@ -11,12 +11,8 @@ class CustomerRepository
   end
 
   def load_from_csv(filename)
-    CSV.foreach(
-      filename,
-      headers: true,
-      header_converters: :symbol
-    ) do |customer_info|
-      customer = Customer.new customer_info, self
+    CSV.foreach(filename, headers: true, header_converters: :symbol) do |info|
+      customer = Customer.new info, self
       @customers.push customer
     end
   end

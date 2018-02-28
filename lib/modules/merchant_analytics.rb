@@ -41,12 +41,8 @@ module MerchantAnalytics
 
   def merchants_with_only_one_item
     merch_ids = @sales_engine.items.all.map(&:merchant_id)
-    selected_ids = merch_ids.select do |id|
-      merch_ids.count(id) == 1
-    end
-    selected_ids.map do |id|
-      @sales_engine.merchants.find_by_id id
-    end
+    selected_ids = merch_ids.select { |id| merch_ids.count(id) == 1 }
+    selected_ids.map { |id| @sales_engine.merchants.find_by_id id }
   end
 
   def revenue_by_merchant(id)
