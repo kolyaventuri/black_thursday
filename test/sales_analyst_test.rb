@@ -165,7 +165,7 @@ class SalesAnalystTest < Minitest::Test
     end
 
     assert_equal 2, merchants.first.id
-    assert_equal 3, merchants.last.id
+    assert_equal 9, merchants.last.id
   end
 
   # rubocop:disable MethodLength, AbcSize
@@ -270,6 +270,6 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Array, items
     assert_equal 1, items.length
 
-    assert_equal 2, items.first.id
+    assert_equal 1, items.first.id
   end
 end

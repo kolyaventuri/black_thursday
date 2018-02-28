@@ -138,7 +138,7 @@ module CustomerAnalytics
   end
 
   def get_highest_value(quantities)
-    quantities.max_by { |_id, value| value }
+    quantities.max_by { |_id, value| value }.last
   end
 
   def get_max_item(quantities, highest_value)
