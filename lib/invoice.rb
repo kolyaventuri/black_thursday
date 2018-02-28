@@ -66,7 +66,7 @@ class Invoice
 
   def quantify_items
     return BigDecimal.new(0) unless is_paid_in_full?
-    items = @invoice_repository.invoice_items @id
+    items = invoice_items
     quantity = items.map(&:quantity).reduce(:+)
     quantity || BigDecimal.new(0)
   end
