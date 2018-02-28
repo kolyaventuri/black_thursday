@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require_relative 'standard_deviation'
-require_relative 'merchant_analytics'
-require_relative 'customer_analytics'
-require_relative 'invoice_analytics'
+require_relative 'modules/merchant_analytics'
+require_relative 'modules/customer_analytics'
+require_relative 'modules/invoice_analytics'
 
 # Uses the sales engine to perform calculations
 class SalesAnalyst
