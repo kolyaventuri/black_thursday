@@ -62,10 +62,7 @@ class Merchant
       total = item_revenues.reduce(0) do |sum, revenue|
         sum + revenue[:revenue]
       end
-      {
-        id: id,
-        revenue: total
-      }
+      { id: id, revenue: total }
     end
   end
 

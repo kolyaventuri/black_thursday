@@ -89,16 +89,10 @@ class SalesAnalyst
 
   def top_merchants_by_invoice_count
     invoice_count = invoice_count_by_merchant
-    count = invoice_count.map do |merchant|
-      merchant[:invoices]
-    end
-
+    count = invoice_count.map { |merchant| merchant[:invoices] }
     avg = count.reduce(:+) / count.length.to_f
     deviation = StandardDeviation.calculate count
-
     ids = merchant_ids_with_high_invoice_count invoice_count, avg, deviation
-    ids.map do |id|
-      @sales_engine.merchants.find_by_id id
-    end
+    ids.map { |id| @sales_engine.merchants.find_by_id id }
   end
 end
