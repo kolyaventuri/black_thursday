@@ -145,7 +145,7 @@ module CustomerAnalytics
       quantity == highest_value
     end
   end
-  
+
   def best_invoice_by_revenue
     best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
       -invoice.total

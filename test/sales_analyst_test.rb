@@ -272,7 +272,7 @@ class SalesAnalystTest < Minitest::Test
 
     assert_equal 1, items.first.id
   end
-  
+
   def test_best_invoice_by_revenue
     best_invoice = @sa.best_invoice_by_revenue
     assert_instance_of Invoice, best_invoice
