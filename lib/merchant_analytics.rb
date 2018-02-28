@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Defines Analytics related to Merchants
 module MerchantAnalytics
   def average_invoices_per_merchant
