@@ -40,7 +40,7 @@ sales_analyst = SalesAnalyst.new(sales_engine)
 ## Usage
 
 All usage is accomplished through SalesAnalyst.
-SalesAnalyst documentation is available through [USAGE.MD](USAGE.MD)
+SalesAnalyst documentation is available through [USAGE.MD](USAGE.md)
 
 ## Testing
 
