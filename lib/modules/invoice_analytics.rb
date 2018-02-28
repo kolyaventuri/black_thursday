@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Defines methods for analyzing invoices
 module InvoiceAnalytics
   def bottom_merchants_by_invoice_count
     invoice_count = invoice_count_by_merchant
