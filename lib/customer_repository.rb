@@ -54,4 +54,12 @@ class CustomerRepository
   def inspect
     "#<#{self.class} #{@customers.length} rows>"
   end
+
+  def invoices(id)
+    @sales_engine.invoices.find_all_by_customer_id id
+  end
+
+  def expenditure(id)
+    invoices(id).map(&:total).reduce(:+) || 0
+  end
 end

@@ -112,4 +112,19 @@ class InvoiceTest < Minitest::Test
       assert_instance_of InvoiceItem, item
     end
   end
+
+  def test_can_get_invoice_items
+    items = @invoice.invoice_items
+    assert_instance_of Array, items
+
+    assert_equal 3, items.length
+    items.each do |item|
+      assert_instance_of InvoiceItem, item
+    end
+  end
+
+  def test_can_quantify_items_on_invoice
+    items = @invoice.quantify_items
+    assert_equal 16, items
+  end
 end

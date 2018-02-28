@@ -127,7 +127,7 @@ class SalesAnalystTest < Minitest::Test
     merchants = @sa.merchants_with_pending_invoices
 
     assert_instance_of Array, merchants
-    assert_equal 7, merchants.length
+    assert_equal 6, merchants.length
     assert_instance_of Merchant, merchants[0]
     assert_equal 'Shopin1901', merchants[0].name
   end
@@ -165,7 +165,7 @@ class SalesAnalystTest < Minitest::Test
     end
 
     assert_equal 2, merchants.first.id
-    assert_equal 3, merchants.last.id
+    assert_equal 9, merchants.last.id
   end
 
   # rubocop:disable MethodLength, AbcSize
@@ -202,5 +202,86 @@ class SalesAnalystTest < Minitest::Test
     assert_instance_of Array, items
     assert_equal 1, items.length
     assert_equal 2, items.first.id
+  end
+
+  def test_it_can_get_top_buyers
+    buyers = @sa.top_buyers 3
+    assert_instance_of Array, buyers
+    assert_equal 3, buyers.length
+
+    buyers.each do |buyer|
+      assert_instance_of Customer, buyer
+    end
+    assert_equal 1, buyers.first.id
+
+    buyers = @sa.top_buyers
+
+    assert_instance_of Array, buyers
+    assert_equal 15, buyers.length
+  end
+
+  def test_can_get_top_merchant_for_customer
+    merchant = @sa.top_merchant_for_customer 1
+    assert_instance_of Merchant, merchant
+    assert_equal 1, merchant.id
+  end
+
+  def test_can_get_one_time_buyers
+    buyers = @sa.one_time_buyers
+    assert_instance_of Array, buyers
+    assert_equal 2, buyers.length
+
+    buyers.each do |buyer|
+      assert_instance_of Customer, buyer
+    end
+
+    assert_equal 6, buyers.first.id
+    assert_equal 7, buyers.last.id
+  end
+
+  def test_can_get_popular_one_time_buyer_item
+    items = @sa.one_time_buyers_top_items
+    assert_instance_of Array, items
+    assert_equal 1, items.length
+
+    assert_equal 2, items.first.id
+  end
+
+  def test_gives_array_of_items_bought_in_year
+    items = @sa.items_bought_in_year(1, '2009')
+    assert_instance_of Array, items
+    assert_instance_of Item, items[0]
+    assert_equal 12, items.length
+    assert_equal 1, items.first.id
+    assert_equal 2, items.last.id
+  end
+
+  def test_can_get_customers_with_unpaid_invoices
+    customers = @sa.customers_with_unpaid_invoices
+    assert_instance_of Array, customers
+    assert_equal 5, customers.length
+
+    assert_equal 1, customers.first.id
+    assert_equal 9, customers.last.id
+  end
+
+  def test_can_get_highest_volume_items
+    items = @sa.highest_volume_items 1
+    assert_instance_of Array, items
+    assert_equal 1, items.length
+
+    assert_equal 1, items.first.id
+  end
+
+  def test_best_invoice_by_revenue
+    best_invoice = @sa.best_invoice_by_revenue
+    assert_instance_of Invoice, best_invoice
+    assert_equal 3, best_invoice.id
+  end
+
+  def test_best_invoice_by_quantity
+    best_invoice = @sa.best_invoice_by_quantity
+    assert_instance_of Invoice, best_invoice
+    assert_equal 2, best_invoice.id
   end
 end

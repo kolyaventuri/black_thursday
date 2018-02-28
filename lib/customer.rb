@@ -20,4 +20,20 @@ class Customer
   def merchants
     @customer_repository.merchants @id
   end
+
+  def expenditure
+    @customer_repository.expenditure @id
+  end
+
+  def fully_paid_invoices
+    invoices.select(&:is_paid_in_full?)
+  end
+
+  def unpaid_invoices
+    invoices.reject(&:is_paid_in_full?)
+  end
+
+  def invoices
+    @customer_repository.invoices @id
+  end
 end
