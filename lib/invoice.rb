@@ -10,16 +10,14 @@ class Invoice
               :updated_at
 
   def initialize(data, repository)
-    ids data
-    parse_dates data
-    @status = data[:status].to_sym
-    @invoice_repository = repository
-  end
-
-  def ids(data)
     @id = data[:id].to_i
     @customer_id = data[:customer_id].to_i
     @merchant_id = data[:merchant_id].to_i
+
+    @status = data[:status].to_sym
+    @invoice_repository = repository
+
+    parse_dates data
   end
 
   def parse_dates(data)

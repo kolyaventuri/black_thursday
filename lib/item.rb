@@ -14,10 +14,12 @@ class Item
               :item_repository
 
   def initialize(data, item_repository)
-    ids data
+    @id = data[:id].to_i
+    @merchant_id = data[:merchant_id].to_i
+
     parse_dates data
-    @name = data[:name]
-    @description = data[:description]
+    item_info data
+
     @unit_price = price_to_big_decimal data[:unit_price]
     @item_repository = item_repository
   end
@@ -25,6 +27,11 @@ class Item
   def ids(data)
     @id = data[:id].to_i
     @merchant_id = data[:merchant_id].to_i
+  end
+
+  def item_info(data)
+    @name = data[:name]
+    @description = data[:description]
   end
 
   def parse_dates(data)

@@ -14,17 +14,19 @@ class Transaction
               :transaction_repository
 
   def initialize(data, transaction_repository)
-    ids data
-    parse_dates data
-    @credit_card_number = data[:credit_card_number].to_i
-    @credit_card_expiration_date = data[:credit_card_expiration_date]
-    @result = data[:result]
-    @transaction_repository = transaction_repository
-  end
-
-  def ids(data)
     @id = data[:id].to_i
     @invoice_id = data[:invoice_id].to_i
+
+    @result = data[:result]
+    @transaction_repository = transaction_repository
+
+    parse_dates data
+    cc_info data
+  end
+
+  def cc_info(data)
+    @credit_card_number = data[:credit_card_number].to_i
+    @credit_card_expiration_date = data[:credit_card_expiration_date]
   end
 
   def parse_dates(data)
