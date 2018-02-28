@@ -167,8 +167,8 @@ module CustomerAnalytics
 
   def best_invoice_by_quantity
     best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
-      -invoice.quantify_items
+      [-invoice.quantify_items, invoice.id]
     end
-    best_invoices[1]
+    best_invoices.first
   end
 end
