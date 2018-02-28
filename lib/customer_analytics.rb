@@ -73,7 +73,6 @@ module CustomerAnalytics
     end
   end
 
-
   def one_time_buyers_top_items
     invoices = buyer_invoices_paid_in_full one_time_buyers
     invoice_items = itemize_invoices invoices
@@ -145,5 +144,19 @@ module CustomerAnalytics
     quantities.select do |_id, quantity|
       quantity == highest_value
     end
+  end
+  
+  def best_invoice_by_revenue
+    best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
+      -invoice.total
+    end
+    best_invoices.first
+  end
+
+  def best_invoice_by_quantity
+    best_invoices = @sales_engine.invoices.all.sort_by do |invoice|
+      -invoice.quantify_items
+    end
+    best_invoices[1]
   end
 end
