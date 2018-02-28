@@ -165,7 +165,7 @@ class SalesAnalystTest < Minitest::Test
     end
 
     assert_equal 2, merchants.first.id
-    assert_equal 9, merchants.last.id
+    assert_equal 3, merchants.last.id
   end
 
   # rubocop:disable MethodLength, AbcSize
