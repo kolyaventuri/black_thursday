@@ -1,36 +1,47 @@
 module InvoiceAnalytics
   def bottom_merchants_by_invoice_count
     invoice_count = invoice_count_by_merchant
-    count = invoice_count.map do |merchant|
-      merchant[:invoices]
-    end
+    count = invoice_count_array invoice_count
 
     avg = count.reduce(:+) / count.length.to_f
     deviation = StandardDeviation.calculate count
 
-    ids = merchant_ids_with_low_invoice_count invoice_count, avg, deviation
-    ids.map do |id|
-      @sales_engine.merchants.find_by_id id
+    merchants_with_low_invoice_count invoice_count, avg, deviation
+  end
+
+  def top_merchants_by_invoice_count
+    invoice_count = invoice_count_by_merchant
+    count = invoice_count.map { |merchant| merchant[:invoices] }
+
+    avg = count.reduce(:+) / count.length.to_f
+    deviation = StandardDeviation.calculate count
+
+    merchants_with_high_invoice_count invoice_count, avg, deviation
+  end
+
+  def invoice_count_array(invoice_count)
+    invoice_count.map do |merchant|
+      merchant[:invoices]
     end
   end
 
-  def merchant_ids_with_high_invoice_count(merchants, avg, deviation)
+  def merchants_with_high_invoice_count(merchants, avg, deviation)
     list = merchants.select do |merchant|
       merchant[:invoices] >= avg + (2 * deviation)
     end
 
     list.map do |merchant|
-      merchant[:id]
+      @sales_engine.merchants.find_by_id merchant[:id]
     end
   end
 
-  def merchant_ids_with_low_invoice_count(merchants, avg, deviation)
+  def merchants_with_low_invoice_count(merchants, avg, deviation)
     list = merchants.select do |merchant|
       merchant[:invoices] <= avg - (2 * deviation)
     end
 
     list.map do |merchant|
-      merchant[:id]
+      @sales_engine.merchants.find_by_id merchant[:id]
     end
   end
 
@@ -62,6 +73,10 @@ module InvoiceAnalytics
     avg = days_array.reduce(:+) / days_array.length.to_f
     deviation = StandardDeviation.calculate days_array
 
+    days_matching_invoice_count count, avg, deviation
+  end
+
+  def days_matching_invoice_count(count, avg, deviation)
     count.select do |_day, num_invoices|
       num_invoices >= avg + deviation
     end.keys

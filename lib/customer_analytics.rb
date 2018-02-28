@@ -5,14 +5,16 @@ module CustomerAnalytics
   def top_merchant_for_customer(id)
     invoices = @sales_engine.invoices.find_all_by_customer_id id
 
-    grouped_by_merchant = invoices.group_by(&:merchant_id)
+    merchants = merchant_quantities invoices.group_by(&:merchant_id)
 
-    merchants = grouped_by_merchant.map do |merch_id, invoice_list|
+    @sales_engine.merchants.find_by_id highest_quantity_merchant(merchants)[0]
+  end
+
+  def merchant_quantities(merchants)
+    merchants.map do |merch_id, invoice_list|
       quantity = get_quantity_of_invoices invoice_list
       [merch_id, quantity || 0]
     end.to_h
-
-    @sales_engine.merchants.find_by_id highest_quantity_merchant(merchants)[0]
   end
 
   def get_quantity_of_invoices(invoices)
@@ -104,12 +106,15 @@ module CustomerAnalytics
   def items_bought_in_year(customer_id, year)
     date = Time.parse("#{year}-01-01")
     invoices = @sales_engine.invoices.find_all_by_customer_id customer_id
-    selected = invoices.select do |invoice|
-      invoice.created_at.year == date.year
-    end
-    selected.map do |invoice|
+    invoices_in_year(invoices, date).map do |invoice|
       @sales_engine.invoices.find_items_by_invoice_id invoice.id
     end.flatten
+  end
+
+  def invoices_in_year(invoices, date)
+    invoices.select do |invoice|
+      invoice.created_at.year == date.year
+    end
   end
 
   def customers_with_unpaid_invoices
@@ -121,17 +126,24 @@ module CustomerAnalytics
   def highest_volume_items(id)
     customer = @sales_engine.customers.find_by_id id
 
-    invoices = customer.invoices
-    invoice_items = itemize_invoices invoices.flatten
-    grouped = invoice_items.group_by(&:item_id)
+    invoices = invoices_by_item_id customer.invoices
 
-    quantities = invoice_item_quantity_totals grouped
+    quantities = invoice_item_quantity_totals invoices
 
     max = get_highest_value(quantities)
 
     max_items = get_max_item(quantities, max)
 
-    max_items.map do |item_id, _quantity|
+    item_ids_to_items max_items
+  end
+
+  def invoices_by_item_id(invoices)
+    invoice_items = itemize_invoices invoices.flatten
+    invoice_items.group_by(&:item_id)
+  end
+
+  def item_ids_to_items(ids)
+    ids.map do |item_id, _quantity|
       @sales_engine.items.find_by_id item_id
     end
   end
